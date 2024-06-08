@@ -93,13 +93,21 @@ const Navbar = () => {
 						</li>
 					</ul>
 					{/* end of top links */}
-					<div className='absolute bottom-0 h-[40vh] bg-[#f3f3f3] w-[96%] mx-[2%] rounded mb-1 px-[16px] py-[16px]'>
+					<div className='absolute bottom-0  pb-[50px] bg-[#f3f3f3] w-[96%] mx-[2%] rounded mb-1 px-[16px] py-[16px]'>
 						<div className='user text-slate-600 flex justify-start items-center gap-[16px] border-b-[2px] pb-[24px] border-slate-400'>
 							<PiUserCircleLight size={50} />
 							<div className='userInfo'>
 								<h4 className='text-lg font-medium'>No User Logged in Yet</h4>
 								<p className='text-sm '>Your info will apear here</p>
 							</div>
+						</div>
+						<div className='btns mt-[24px]'>
+							<button className='w-full py-[12px] bg-[var(--primary)] text-white mb-[10px] outline-none border-none rounded'>
+								Login
+							</button>
+							<button className='w-full py-[12px] border-[var(--primary)] mb-[10px] outline-none border-2 rounded text-[var(--primary)]'>
+								Register
+							</button>
 						</div>
 					</div>
 				</div>
