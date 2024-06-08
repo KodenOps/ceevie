@@ -10,7 +10,7 @@ import {
 	MdInfo,
 	MdMenu,
 } from 'react-icons/md';
-import { PiUserCircleCheckThin } from 'react-icons/pi';
+import { PiUserCircleCheckThin, PiUserCircleLight } from 'react-icons/pi';
 const Navbar = () => {
 	const [navOpen, setnavOpen] = useState(true);
 	return (
@@ -94,8 +94,12 @@ const Navbar = () => {
 					</ul>
 					{/* end of top links */}
 					<div className='absolute bottom-0 h-[40vh] bg-[#f3f3f3] w-[96%] mx-[2%] rounded mb-1 px-[16px] py-[16px]'>
-						<div className='user'>
-							<PiUserCircleCheckThin size={30} />
+						<div className='user text-slate-600 flex justify-start items-center gap-[16px] border-b-[2px] pb-[24px] border-slate-400'>
+							<PiUserCircleLight size={50} />
+							<div className='userInfo'>
+								<h4 className='text-lg font-medium'>No User Logged in Yet</h4>
+								<p className='text-sm '>Your info will apear here</p>
+							</div>
 						</div>
 					</div>
 				</div>
