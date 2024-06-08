@@ -1,13 +1,14 @@
-// 'use client';
+'use client';
 import React, { useState } from 'react';
-// import { userDB } from '../data/userDB';
-import Navbar from '@/components/Navbar';
+import { userDB } from '../data/userDB';
+import Login from '@/pages/Login';
 const page = () => {
-	// const [userInformation, setuserInformation] = useState(userDB);
+	const [userInformation, setuserInformation] = useState(userDB);
 
 	return (
 		<div className=''>
-			<Navbar />
+			<Login />
+		
 		</div>
 	);
 };
