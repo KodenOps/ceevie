@@ -8,14 +8,11 @@ import Home from './Home';
 import { UserInfo } from '../type/UserInfo';
 
 type SetUserInfoType = (userInfo: UserInfo) => void;
-interface userInfoType {
-	UserInfo: Object;
-	setUserInfo: Function;
-}
-const Login: React.FC<{
+interface LoginProps {
 	UserInfo: UserInfo;
 	setUserInfo: SetUserInfoType;
-}> = ({ UserInfo, setUserInfo }) => {
+}
+const Login: React.FC<LoginProps> = ({ UserInfo, setUserInfo }) => {
 	const [firstName, setfirstName] = useState('');
 	const [lastName, setlastName] = useState('');
 	const [email, setemail] = useState('');
@@ -106,7 +103,6 @@ const Login: React.FC<{
 				<Navbar
 					userinfo={UserInfo}
 					UserInfo={UserInfo}
-					// setUserInfo={setUserInfo}
 					isValid={isValid}
 					setisValid={setIsValid}
 				/>
