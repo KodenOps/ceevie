@@ -23,7 +23,8 @@ const Navbar: React.FC<Props> = ({ userinfo, isValid, setisValid }) => {
 	let navName = '';
 	let navText = '';
 	const [navOpen, setnavOpen] = useState(true);
-	if (Object.keys(userinfo).length < 1) {
+	// console.log(Object.keys(userinfo).length);
+	if (Object.keys(userinfo).length == 0) {
 		navName = 'No User Logged in Yet';
 		navText = 'Your info will apear here';
 		return (
