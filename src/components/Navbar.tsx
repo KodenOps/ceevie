@@ -17,9 +17,15 @@ interface Props {
 	userinfo: UserInfo;
 	isValid?: boolean;
 	setisValid: Function;
+	setUserInfo: Function;
 }
 
-const Navbar: React.FC<Props> = ({ userinfo, isValid, setisValid }) => {
+const Navbar: React.FC<Props> = ({
+	userinfo,
+	isValid,
+	setisValid,
+	setUserInfo,
+}) => {
 	const [navOpen, setnavOpen] = useState(true);
 	let navName = '';
 	let navText = '';
@@ -118,7 +124,10 @@ const Navbar: React.FC<Props> = ({ userinfo, isValid, setisValid }) => {
 							{Object.keys(userinfo).length !== 0 ? (
 								<button
 									className='w-full py-[12px] bg-[var(--primary)] text-white bg-red-400 mb-[10px] outline-none border-none rounded'
-									onClick={() => setisValid(!isValid)}>
+									onClick={() => {
+										setisValid(!isValid);
+										setUserInfo({});
+									}}>
 									Logout
 								</button>
 							) : (
