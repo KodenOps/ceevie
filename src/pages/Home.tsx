@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { UserInfo } from '../type/UserInfo';
 import Navbar from '@/components/Navbar';
