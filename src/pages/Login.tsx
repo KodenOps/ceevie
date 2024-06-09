@@ -74,7 +74,7 @@ const Login: React.FC<LoginProps> = ({ UserInfo, setUserInfo }) => {
 	}
 	// submit function
 	function formSubmit() {
-		if (typeof UserInfo !== undefined || null) {
+		if (typeof UserInfo !== (undefined || null)) {
 			setUserInfo({
 				fname: firstName,
 				lname: lastName,
