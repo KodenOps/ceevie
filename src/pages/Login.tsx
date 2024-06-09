@@ -9,8 +9,8 @@ import { UserInfo } from '../type/UserInfo';
 
 type SetUserInfoType = (userInfo: UserInfo) => void;
 interface LoginProps {
-	UserInfo: UserInfo;
-	setUserInfo: SetUserInfoType;
+	UserInfo?: UserInfo;
+	setUserInfo?: SetUserInfoType;
 }
 const Login: React.FC<LoginProps> = ({ UserInfo, setUserInfo }) => {
 	const [firstName, setfirstName] = useState('');
