@@ -10,7 +10,7 @@ const page = () => {
 	return (
 		<div className=''>
 			<Login
-				UserInfo={userinfo}
+				userinfo={userinfo}
 				setUserInfo={setuserinfo}
 			/>
 		</div>

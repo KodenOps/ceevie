@@ -11,8 +11,7 @@ import {
 	MdInfo,
 	MdMenu,
 } from 'react-icons/md';
-import { PiUserCircleCheckThin, PiUserCircleLight } from 'react-icons/pi';
-import Link from 'next/link';
+import { PiUserCircleLight } from 'react-icons/pi';
 interface Props {
 	userinfo: UserInfo;
 	UserInfo?: Object;

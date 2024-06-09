@@ -7,12 +7,12 @@ import Pattern from '../../public/asset/pattern.png';
 import Home from './Home';
 import { UserInfo } from '../type/UserInfo';
 
-type SetUserInfoType = (userInfo: UserInfo) => void;
+type SetUserInfoType = (userinfo: UserInfo) => void;
 interface LoginProps {
-	UserInfo: UserInfo;
+	userinfo: UserInfo;
 	setUserInfo: SetUserInfoType;
 }
-const Login: React.FC<LoginProps> = ({ UserInfo, setUserInfo }) => {
+const Login: React.FC<LoginProps> = ({ userinfo, setUserInfo }) => {
 	const [firstName, setfirstName] = useState('');
 	const [lastName, setlastName] = useState('');
 	const [email, setemail] = useState('');
@@ -23,7 +23,7 @@ const Login: React.FC<LoginProps> = ({ UserInfo, setUserInfo }) => {
 	const [emailError, setemailError] = useState('');
 	const [passwordError, setpasswordError] = useState('');
 	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-	const [isValid, setIsValid] = useState(false); // State variable to track form validity
+	const [isValid, setisValid] = useState(false); // State variable to track form validity
 
 	const validateForm = () => {
 		// Return true if form is valid, false otherwise
@@ -74,7 +74,7 @@ const Login: React.FC<LoginProps> = ({ UserInfo, setUserInfo }) => {
 	}
 	// submit function
 	function formSubmit() {
-		if (typeof UserInfo !== (undefined || null)) {
+		if (typeof userinfo !== undefined || typeof userinfo !== null) {
 			setUserInfo({
 				fname: firstName,
 				lname: lastName,
@@ -89,11 +89,11 @@ const Login: React.FC<LoginProps> = ({ UserInfo, setUserInfo }) => {
 		const formIsValid = validateForm();
 		if (formIsValid) {
 			// If form is valid, set isValid to true and redirect
-			setIsValid(true);
+			setisValid(true);
 			clearField();
 		} else {
 			// If form is not valid, set isValid to false
-			setIsValid(false);
+			setisValid(false);
 		}
 	}
 	if (!isValid) {
@@ -105,10 +105,10 @@ const Login: React.FC<LoginProps> = ({ UserInfo, setUserInfo }) => {
 					className='absolute top-0 left-0 w-[100%] -z-10 h-[100vh]'
 				/>
 				<Navbar
-					userinfo={UserInfo}
-					UserInfo={UserInfo}
+					userinfo={userinfo}
+					UserInfo={userinfo}
 					isValid={isValid}
-					setisValid={setIsValid}
+					setisValid={setisValid}
 				/>
 				<div className='loginWrapper md:w-[70vw] w-full lg:h-[80vh] md:h-[75vh] md:border-[1px] border-[#e8e8e8] md:mx-[15%]   rounded-lg flex items-start overflow-hidden z-50 md:bg-white'>
 					{/* the left side of login */}
@@ -210,10 +210,10 @@ const Login: React.FC<LoginProps> = ({ UserInfo, setUserInfo }) => {
 	} else {
 		return (
 			<Home
-				userinfo={UserInfo}
+				userinfo={userinfo}
 				isValid={isValid}
-				setisValid={setIsValid}
-				UserInfo={UserInfo}
+				setisValid={setisValid}
+				// UserInfo={UserInfos}
 				setUserInfo={setUserInfo}
 			/>
 		);

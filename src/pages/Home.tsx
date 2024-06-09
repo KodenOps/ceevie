@@ -8,15 +8,10 @@ interface Props {
 	userinfo: UserInfo;
 	isValid: boolean;
 	setisValid: Function;
-	UserInfo: Object;
+	// UserInfo: Object;
 	setUserInfo: Function;
 }
-const Home: React.FC<Props> = ({
-	userinfo,
-	isValid,
-	setisValid,
-	UserInfo,
-}) => {
+const Home: React.FC<Props> = ({ userinfo, isValid, setisValid }) => {
 	if (userinfo) {
 		return (
 			<div>
@@ -24,7 +19,7 @@ const Home: React.FC<Props> = ({
 					userinfo={userinfo}
 					isValid={isValid}
 					setisValid={setisValid}
-					UserInfo={UserInfo}
+					// UserInfo={UserInfo}
 					// setUserInfo={setUserInfo}
 				/>
 				<div className='loginWrapper md:w-[70vw] w-full lg:h-[80vh] md:h-[75vh] md:border-[2px] border-[#e8e8e8] md:mx-[15%]   rounded-lg flex items-start overflow-hidden z-50 md:bg-white px-[24px] py-[24px]'>
