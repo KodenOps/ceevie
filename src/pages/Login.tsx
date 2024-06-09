@@ -9,7 +9,7 @@ import { UserInfo } from '../type/UserInfo';
 
 type SetUserInfoType = (userInfo: UserInfo) => void;
 interface LoginProps {
-	UserInfo: Object;
+	UserInfo: UserInfo;
 	setUserInfo: SetUserInfoType;
 }
 const Login: React.FC<LoginProps> = ({ UserInfo, setUserInfo }) => {
@@ -74,7 +74,7 @@ const Login: React.FC<LoginProps> = ({ UserInfo, setUserInfo }) => {
 	}
 	// submit function
 	function formSubmit() {
-		if (UserInfo) {
+		if (typeof UserInfo !== undefined || null) {
 			setUserInfo({
 				fname: firstName,
 				lname: lastName,
