@@ -9,8 +9,8 @@ import { UserInfo } from '../type/UserInfo';
 
 type SetUserInfoType = (userInfo: UserInfo) => void;
 interface LoginProps {
-	UserInfo?: UserInfo;
-	setUserInfo?: SetUserInfoType;
+	UserInfo: UserInfo;
+	setUserInfo: SetUserInfoType;
 }
 const Login: React.FC<LoginProps> = ({ UserInfo, setUserInfo }) => {
 	const [firstName, setfirstName] = useState('');
@@ -74,12 +74,16 @@ const Login: React.FC<LoginProps> = ({ UserInfo, setUserInfo }) => {
 	}
 	// submit function
 	function formSubmit() {
-		setUserInfo({
-			fname: firstName,
-			lname: lastName,
-			mail: email,
-			pword: password,
-		});
+		if (UserInfo) {
+			setUserInfo({
+				fname: firstName,
+				lname: lastName,
+				mail: email,
+				pword: password,
+			});
+		} else {
+			console.log('hello');
+		}
 		// Validate the form
 
 		const formIsValid = validateForm();
