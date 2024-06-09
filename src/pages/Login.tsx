@@ -75,7 +75,7 @@ const Login = () => {
 						<form
 							// onSubmit={formSubmit}
 							action='/'
-							className='w-full mt-[32px]'>
+							className='w-full mt-[32px] md:pb-0 pb-[50px]'>
 							<div className=''>
 								<input
 									type='text'
