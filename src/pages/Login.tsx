@@ -74,7 +74,7 @@ const Login: React.FC<LoginProps> = ({ userinfo, setUserInfo }) => {
 	}
 	// submit function
 	function formSubmit() {
-		if (userinfo !== null && userinfo !== undefined) {
+		if (userinfo !== undefined && userinfo !== null) {
 			setUserInfo({
 				fname: firstName,
 				lname: lastName,
@@ -85,7 +85,6 @@ const Login: React.FC<LoginProps> = ({ userinfo, setUserInfo }) => {
 			console.log('hello');
 		}
 		// Validate the form
-
 		const formIsValid = validateForm();
 		if (formIsValid) {
 			// If form is valid, set isValid to true and redirect
