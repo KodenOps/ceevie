@@ -106,7 +106,7 @@ const Login: React.FC<{
 				<Navbar
 					userinfo={UserInfo}
 					UserInfo={UserInfo}
-					setUserInfo={setUserInfo}
+					// setUserInfo={setUserInfo}
 					isValid={isValid}
 					setisValid={setIsValid}
 				/>

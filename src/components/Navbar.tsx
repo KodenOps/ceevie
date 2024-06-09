@@ -16,7 +16,7 @@ import Link from 'next/link';
 interface Props {
 	userinfo: UserInfo;
 	UserInfo: Object;
-	setUserInfo: Function;
+	// setUserInfo: Function;
 	isValid: boolean;
 	setisValid: Function;
 }
