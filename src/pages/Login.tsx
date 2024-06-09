@@ -62,7 +62,7 @@ const Login = () => {
 					/>
 				</div>
 				{/* the form side */}
-				<div className='form px-[16px] md:py-[40px] md:w-[60%] w-full md:overflow-y-scroll h-full '>
+				<div className='form px-[16px] md:py-[40px] md:w-[60%] w-full md:overflow-y-scroll h-full flex justify-start flex-col'>
 					<h2 className='text-2xl font-semibold text-center md:mb-[16px] mb-[8px] '>
 						Register
 					</h2>
@@ -71,11 +71,11 @@ const Login = () => {
 						Effortlessly Create a Standout CV in Minutes. Let AI Help You Land
 						Your Dream Job and Shine in the Job Market!
 					</p>
-					<div className='mainForm'>
+					<div className='mainForm h-full'>
 						<form
 							// onSubmit={formSubmit}
 							action='/'
-							className='w-full mt-[32px] md:pb-0 pb-[50px]'>
+							className='w-full mt-[32px] md:pb-0 pb-[50px] h-full'>
 							<div className=''>
 								<input
 									type='text'
