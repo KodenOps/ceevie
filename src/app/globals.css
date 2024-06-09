@@ -12,3 +12,9 @@
 .mobileUl li {
 	@apply flex items-center justify-between w-full px-[16px] py-[12px] gap-[16px] bg-[#F9F9F9] mb-[16px];
 }
+.mainForm input {
+	@apply bg-none outline-none border-[1px] border-[var(--primary)] px-[16px] py-[14px] md:w-[90%] md:mx-[5%] w-full rounded-md;
+}
+.mainForm p {
+	@apply mb-4 text-red-500;
+}
