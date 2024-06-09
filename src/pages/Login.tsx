@@ -52,7 +52,7 @@ const Login = () => {
 				className='absolute top-0 left-0 w-[100%] -z-10 h-[100vh]'
 			/>
 			<Navbar />
-			<div className='loginWrapper md:w-[60vw] w-full md:h-[70vh] md:border-[1px] border-[#e8e8e8] md:mx-[20%]   rounded-lg flex items-start overflow-hidden z-50 md:bg-white'>
+			<div className='loginWrapper md:w-[70vw] w-full lg:h-[80vh] md:h-[75vh] md:border-[1px] border-[#e8e8e8] md:mx-[15%]   rounded-lg flex items-start overflow-hidden z-50 md:bg-white'>
 				{/* the left side of login */}
 				<div className='img w-[40%]  h-full md:block hidden'>
 					<Image
@@ -62,7 +62,7 @@ const Login = () => {
 					/>
 				</div>
 				{/* the form side */}
-				<div className='form px-[16px] md:py-[40px] md:w-[60%] w-full '>
+				<div className='form px-[16px] md:py-[40px] md:w-[60%] w-full md:overflow-y-scroll h-full '>
 					<h2 className='text-2xl font-semibold text-center md:mb-[16px] mb-[8px] '>
 						Register
 					</h2>

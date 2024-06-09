@@ -4,6 +4,33 @@
 
 :root {
 	--primary: #066e9a;
+	--secondary: #29e7cd;
+}
+
+/* Style for scrollbar */
+::-webkit-scrollbar {
+	width: 5px;
+	cursor: pointer;
+}
+/* Handle */
+html {
+	/* cursor: grab; */
+	transition: all 2s ease;
+	width: 100%;
+}
+::-webkit-scrollbar-thumb {
+	background: var(--primary);
+	/* border: 3px solid var(--bg2);  */
+	border-radius: 10px;
+	cursor: grab;
+	transition: 2s;
+}
+/* the scrollbar track */
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 20px var(--bg);
+	background-color: grey;
+	cursor: grab;
+	border-radius: 30px;
 }
 
 .navLinks {
@@ -16,5 +43,5 @@
 	@apply bg-none outline-none border-[1px] border-[var(--primary)] px-[16px] py-[14px] md:w-[90%] md:mx-[5%] w-full rounded-md;
 }
 .mainForm p {
-	@apply mb-4 text-red-500;
+	@apply mb-4 text-red-500 px-[16px] md:w-[90%] md:mx-[5%] w-full;
 }
