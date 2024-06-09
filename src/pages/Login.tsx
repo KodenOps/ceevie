@@ -88,6 +88,7 @@ const Login: React.FC<{
 		if (formIsValid) {
 			// If form is valid, set isValid to true and redirect
 			setIsValid(true);
+			formSubmit();
 			clearField();
 		} else {
 			// If form is not valid, set isValid to false
