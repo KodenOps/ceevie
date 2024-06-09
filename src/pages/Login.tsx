@@ -84,6 +84,7 @@ const Login: React.FC<{
 			pword: password,
 		});
 		// Validate the form
+
 		const formIsValid = validateForm();
 		if (formIsValid) {
 			// If form is valid, set isValid to true and redirect
@@ -102,7 +103,13 @@ const Login: React.FC<{
 					alt='pattern'
 					className='absolute top-0 left-0 w-[100%] -z-10 h-[100vh]'
 				/>
-				<Navbar />
+				<Navbar
+					userinfo={UserInfo}
+					UserInfo={UserInfo}
+					setUserInfo={setUserInfo}
+					isValid={isValid}
+					setisValid={setIsValid}
+				/>
 				<div className='loginWrapper md:w-[70vw] w-full lg:h-[80vh] md:h-[75vh] md:border-[1px] border-[#e8e8e8] md:mx-[15%]   rounded-lg flex items-start overflow-hidden z-50 md:bg-white'>
 					{/* the left side of login */}
 					<div className='img w-[40%]  h-full md:block hidden'>
@@ -201,7 +208,15 @@ const Login: React.FC<{
 			</div>
 		);
 	} else {
-		return <Home userinfo={UserInfo} />;
+		return (
+			<Home
+				userinfo={UserInfo}
+				isValid={isValid}
+				setisValid={setIsValid}
+				UserInfo={UserInfo}
+				setUserInfo={setUserInfo}
+			/>
+		);
 	}
 };
 

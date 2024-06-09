@@ -6,12 +6,28 @@ import { FaRegSmileBeam } from 'react-icons/fa';
 
 interface Props {
 	userinfo: UserInfo;
+	isValid: boolean;
+	setisValid: Function;
+	UserInfo: Object;
+	setUserInfo: Function;
 }
-const Home: React.FC<Props> = ({ userinfo }) => {
+const Home: React.FC<Props> = ({
+	userinfo,
+	isValid,
+	setisValid,
+	UserInfo,
+	setUserInfo,
+}) => {
 	if (userinfo) {
 		return (
 			<div>
-				<Navbar />
+				<Navbar
+					userinfo={userinfo}
+					isValid={isValid}
+					setisValid={setisValid}
+					UserInfo={UserInfo}
+					setUserInfo={setUserInfo}
+				/>
 				<div className='loginWrapper md:w-[70vw] w-full lg:h-[80vh] md:h-[75vh] md:border-[2px] border-[#e8e8e8] md:mx-[15%]   rounded-lg flex items-start overflow-hidden z-50 md:bg-white px-[24px] py-[24px]'>
 					<div className='greetUser flex items-center gap-[16px] md:justify-start justify-center w-full'>
 						<span className='w-[35px] h-[35px] bg-[#6D69FA] rounded flex justify-center items-center text-white'>
