@@ -9,7 +9,7 @@ import { UserInfo } from '../type/UserInfo';
 
 type SetUserInfoType = (userInfo: UserInfo) => void;
 interface LoginProps {
-	UserInfo: UserInfo;
+	UserInfo: Object;
 	setUserInfo: SetUserInfoType;
 }
 const Login: React.FC<LoginProps> = ({ UserInfo, setUserInfo }) => {
