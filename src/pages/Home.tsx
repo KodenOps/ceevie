@@ -16,7 +16,6 @@ const Home: React.FC<Props> = ({
 	isValid,
 	setisValid,
 	UserInfo,
-	setUserInfo,
 }) => {
 	if (userinfo) {
 		return (

@@ -15,12 +15,12 @@ import { PiUserCircleCheckThin, PiUserCircleLight } from 'react-icons/pi';
 import Link from 'next/link';
 interface Props {
 	userinfo: UserInfo;
-	UserInfo: Object;
+	UserInfo?: Object;
 	// setUserInfo: Function;
-	isValid: boolean;
+	isValid?: boolean;
 	setisValid: Function;
 }
-const Navbar: React.FC<Props> = ({ userinfo, isValid, setisValid, }) => {
+const Navbar: React.FC<Props> = ({ userinfo, isValid, setisValid }) => {
 	let navName = '';
 	let navText = '';
 	const [navOpen, setnavOpen] = useState(true);
