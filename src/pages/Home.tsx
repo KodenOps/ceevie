@@ -4,7 +4,6 @@ import { UserInfo } from '../type/UserInfo';
 import Navbar from '@/components/Navbar';
 import { FaRegSmileBeam } from 'react-icons/fa';
 import { userDBType } from '@/data/userDB';
-import Link from 'next/link';
 
 interface Props {
 	userinfo: UserInfo;
@@ -23,6 +22,7 @@ const Home: React.FC<Props> = ({
 }) => {
 	const [firstshowing, setfirstshowing] = useState(true);
 	const [secondshowing, setsecondshowing] = useState(false);
+	// show first page
 	if (userinfo && firstshowing) {
 		return (
 			<div>
@@ -119,6 +119,9 @@ const Home: React.FC<Props> = ({
 				</div>
 			</div>
 		);
+		// End of First section
+
+		// Start Second section
 	} else if (userinfo && secondshowing) {
 		return (
 			<div>
