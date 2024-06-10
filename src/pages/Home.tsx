@@ -1,9 +1,10 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { UserInfo } from '../type/UserInfo';
 import Navbar from '@/components/Navbar';
 import { FaRegSmileBeam } from 'react-icons/fa';
 import { userDBType } from '@/data/userDB';
+import Link from 'next/link';
 
 interface Props {
 	userinfo: UserInfo;
@@ -20,7 +21,9 @@ const Home: React.FC<Props> = ({
 	setUserInfo,
 	userInformation,
 }) => {
-	if (userinfo) {
+	const [firstshowing, setfirstshowing] = useState(true);
+	const [secondshowing, setsecondshowing] = useState(false);
+	if (userinfo && firstshowing) {
 		return (
 			<div>
 				<Navbar
@@ -42,6 +45,7 @@ const Home: React.FC<Props> = ({
 						</div>
 					</div>
 					{/* the main form */}
+
 					<form
 						action='/'
 						className='flex w-full flex-wrap md:mt-[100px] mt-[32px] gap-10'
@@ -103,9 +107,63 @@ const Home: React.FC<Props> = ({
 							placeholder='Enter Your Home Address'
 						/>
 						<button
-							type='submit'
 							className='bg-[var(--primary)] md:w-[30%] w-full py-[12px] rounded text-white mt-[16px] flex items-center justify-center gap-2'
-							onClick={() => console.log(userInformation.email)}>
+							onClick={(e) => {
+								e.preventDefault();
+								setfirstshowing(!firstshowing);
+								setsecondshowing(!secondshowing);
+							}}>
+							Next
+						</button>
+					</form>
+				</div>
+			</div>
+		);
+	} else if (userinfo && secondshowing) {
+		return (
+			<div>
+				<Navbar
+					userinfo={userinfo}
+					isValid={isValid}
+					setisValid={setisValid}
+					setUserInfo={setUserInfo}
+				/>
+				<div className='loginWrapper md:w-[70vw] w-full lg:h-[80vh] md:h-[75vh] md:border-[2px] border-[#e8e8e8] md:mx-[15%]   rounded-lg flex flex-col items-start overflow-hidden z-50 md:bg-white px-[24px] pt-[4px] pb-[24px]'>
+					<div className='greetUser flex items-center gap-[16px] justify-start w-full border-b-2 pb-[20px] md:pt-[20px] '>
+						<span className='w-[35px] h-[35px] bg-[#6D69FA] rounded flex justify-center items-center text-white'>
+							<FaRegSmileBeam size={20} />
+						</span>
+						<div>
+							<h3 className='text md:text-3xl text-xl font-bold'>
+								Information Stored, {userinfo.fname}
+							</h3>
+							<p className='md:text-xl text-md'>
+								Let's talk about your education now
+							</p>
+						</div>
+					</div>
+					{/* the main form */}
+
+					<form
+						action='/'
+						className='flex w-full flex-wrap md:mt-[100px] mt-[32px] gap-10'
+						onSubmit={(e) => {
+							e.preventDefault();
+						}}>
+						{/* gender */}
+						<select
+							className=' formCss'
+							name='gender'
+							id='gender'>
+							<option value='Select option'>Select Phone</option>
+							<option value='Male'>Male</option>
+							<option value='Female'>Female</option>
+							<option value='Others'>Others</option>
+						</select>
+
+						<button
+							className='bg-[var(--primary)] md:w-[30%] w-full py-[12px] rounded text-white mt-[16px] flex items-center justify-center gap-2'
+							onClick={(e) => e.preventDefault()}>
 							Next
 						</button>
 					</form>
@@ -113,7 +171,7 @@ const Home: React.FC<Props> = ({
 			</div>
 		);
 	} else {
-		('');
+		console.log('first');
 	}
 };
 
