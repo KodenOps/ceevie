@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { UserInfo } from '../type/UserInfo';
 import Navbar from '@/components/Navbar';
 import { FaRegSmileBeam } from 'react-icons/fa';
@@ -28,6 +28,11 @@ const Home: React.FC<Props> = ({
 	setUserInfo,
 	userInformation,
 }) => {
+	useEffect(() => {
+		localStorage.setItem('userInformation', JSON.stringify(userinfo));
+		localStorage.setItem('infoState', JSON.stringify(isValid));
+	}, [userinfo, isValid]);
+	
 	const [firstshowing, setfirstshowing] = useState(true);
 	const [secondshowing, setsecondshowing] = useState(false);
 	const [thirdshowing, setthirdshowing] = useState(false);

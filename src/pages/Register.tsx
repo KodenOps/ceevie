@@ -1,7 +1,7 @@
 'use client';
 import Navbar from '@/components/Navbar';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import loginImg from '../../public/asset/login_img.jpg';
 import Pattern from '../../public/asset/pattern.png';
 
@@ -26,6 +26,14 @@ const Register: React.FC<LoginProps> = ({
 	isvalid,
 	setisvalid,
 }) => {
+	useEffect(() => {
+		const storedValue = localStorage.getItem('userInformation');
+		const state = localStorage.getItem('infoState');
+		if (storedValue && state) {
+			setUserInfo(JSON.parse(storedValue));
+			setisvalid(JSON.parse(state));
+		}
+	}, []);
 	const [firstName, setfirstName] = useState('');
 	const [lastName, setlastName] = useState('');
 	const [email, setemail] = useState('');

@@ -127,6 +127,7 @@ const Navbar: React.FC<Props> = ({
 									onClick={() => {
 										setisValid(!isValid);
 										setUserInfo({});
+										localStorage.clear();
 									}}>
 									Logout
 								</button>

@@ -10,10 +10,6 @@ const page = () => {
 	const [userinfo, setuserinfo] = useState<UserInfo>({});
 	const [isValid, setisValid] = useState(false); // State variable to track form validity
 	useEffect(() => {
-		localStorage.setItem('userInformation', JSON.stringify(userinfo));
-		localStorage.setItem('infoState', JSON.stringify(isValid));
-	}, [userinfo, isValid]);
-	useEffect(() => {
 		const storedValue = localStorage.getItem('userInformation');
 		const state = localStorage.getItem('infoState');
 		if (storedValue && state) {
@@ -21,7 +17,6 @@ const page = () => {
 			setisValid(JSON.parse(state));
 		}
 	}, []);
-
 	return (
 		<div className=''>
 			<Login
