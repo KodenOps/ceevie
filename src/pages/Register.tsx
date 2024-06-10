@@ -6,13 +6,14 @@ import loginImg from '../../public/asset/login_img.jpg';
 import Pattern from '../../public/asset/pattern.png';
 import Home from './Home';
 import { UserInfo } from '../type/UserInfo';
+import { userDB } from '@/data/userDB';
 
 type SetUserInfoType = (userinfo: UserInfo) => void;
 interface LoginProps {
 	userinfo: UserInfo;
 	setUserInfo: SetUserInfoType;
 }
-const Login: React.FC<LoginProps> = ({ userinfo, setUserInfo }) => {
+const Register: React.FC<LoginProps> = ({ userinfo, setUserInfo }) => {
 	const [firstName, setfirstName] = useState('');
 	const [lastName, setlastName] = useState('');
 	const [email, setemail] = useState('');
@@ -212,11 +213,11 @@ const Login: React.FC<LoginProps> = ({ userinfo, setUserInfo }) => {
 				userinfo={userinfo}
 				isValid={isValid}
 				setisValid={setisValid}
-				// UserInfo={UserInfos}
+				userDB={userDB}
 				setUserInfo={setUserInfo}
 			/>
 		);
 	}
 };
 
-export default Login;
+export default Register;

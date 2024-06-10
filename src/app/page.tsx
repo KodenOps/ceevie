@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { userDB } from '../data/userDB';
-import Login from '@/pages/Login';
+import Login from '@/pages/Register';
 import { UserInfo } from '../type/UserInfo';
 const page = () => {
 	type SetUserInfoType = (userInfo: UserInfo) => void;
