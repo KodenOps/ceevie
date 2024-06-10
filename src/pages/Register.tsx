@@ -17,6 +17,14 @@ interface LoginProps {
 	setuserInformation: Function;
 	isvalid: boolean;
 	setisvalid: Function;
+	firstshowing: boolean;
+	secondshowing: boolean;
+	thirdshowing: boolean;
+	fourthshowing: boolean;
+	setfirstshowing: Function;
+	setsecondshowing: Function;
+	setthirdshowing: Function;
+	setfourthshowing: Function;
 }
 const Register: React.FC<LoginProps> = ({
 	userinfo,
@@ -25,15 +33,32 @@ const Register: React.FC<LoginProps> = ({
 	setuserInformation,
 	isvalid,
 	setisvalid,
+	firstshowing,
+	secondshowing,
+	thirdshowing,
+	fourthshowing,
+	setfirstshowing,
+	setsecondshowing,
+	setthirdshowing,
+	setfourthshowing,
 }) => {
 	useEffect(() => {
 		const storedValue = localStorage.getItem('userInformation');
 		const state = localStorage.getItem('infoState');
-		if (storedValue && state) {
+		const first = localStorage.getItem('firstshowing');
+		const second = localStorage.getItem('secondshowing');
+		const third = localStorage.getItem('thirdshowing');
+		const fourth = localStorage.getItem('fourthshowing');
+		if (storedValue && state && first && second && third && fourth) {
 			setUserInfo(JSON.parse(storedValue));
 			setisvalid(JSON.parse(state));
+			setfirstshowing(JSON.parse(first));
+			setsecondshowing(JSON.parse(second));
+			setthirdshowing(JSON.parse(third));
+			setfourthshowing(JSON.parse(fourth));
 		}
 	}, []);
+
 	const [firstName, setfirstName] = useState('');
 	const [lastName, setlastName] = useState('');
 	const [email, setemail] = useState('');
@@ -241,6 +266,14 @@ const Register: React.FC<LoginProps> = ({
 				setUserInfo={setUserInfo}
 				userInformation={userinformation}
 				setuserInformation={setuserInformation}
+				firstshowing={firstshowing}
+				secondshowing={secondshowing}
+				thirdshowing={thirdshowing}
+				fourthshowing={fourthshowing}
+				setfirstshowing={setfirstshowing}
+				setsecondshowing={setsecondshowing}
+				setthirdshowing={setthirdshowing}
+				setfourthshowing={setfourthshowing}
 			/>
 		);
 	}

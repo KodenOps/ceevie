@@ -9,6 +9,10 @@ const page = () => {
 	const [userInformation, setuserInformation] = useState<userDBType>(userDB);
 	const [userinfo, setuserinfo] = useState<UserInfo>({});
 	const [isValid, setisValid] = useState(false); // State variable to track form validity
+	const [firstshowing, setfirstshowing] = useState(true);
+	const [secondshowing, setsecondshowing] = useState(false);
+	const [thirdshowing, setthirdshowing] = useState(false);
+	const [fourthshowing, setfourthshowing] = useState(false);
 	useEffect(() => {
 		const storedValue = localStorage.getItem('userInformation');
 		const state = localStorage.getItem('infoState');
@@ -17,6 +21,7 @@ const page = () => {
 			setisValid(JSON.parse(state));
 		}
 	}, []);
+
 	return (
 		<div className=''>
 			<Login
@@ -26,6 +31,14 @@ const page = () => {
 				setUserInfo={setuserinfo}
 				userinformation={userInformation}
 				setuserInformation={setuserInformation}
+				firstshowing={firstshowing}
+				secondshowing={secondshowing}
+				thirdshowing={thirdshowing}
+				fourthshowing={fourthshowing}
+				setfirstshowing={setfirstshowing}
+				setsecondshowing={setsecondshowing}
+				setthirdshowing={setthirdshowing}
+				setfourthshowing={setfourthshowing}
 			/>
 		</div>
 	);

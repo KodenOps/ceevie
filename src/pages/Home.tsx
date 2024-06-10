@@ -20,6 +20,14 @@ interface Props {
 	setUserInfo: Function;
 	userInformation: userDBType;
 	setuserInformation: Function;
+	firstshowing: boolean;
+	secondshowing: boolean;
+	thirdshowing: boolean;
+	fourthshowing: boolean;
+	setfirstshowing: Function;
+	setsecondshowing: Function;
+	setthirdshowing: Function;
+	setfourthshowing: Function;
 }
 const Home: React.FC<Props> = ({
 	userinfo,
@@ -27,16 +35,31 @@ const Home: React.FC<Props> = ({
 	setisValid,
 	setUserInfo,
 	userInformation,
+	firstshowing,
+	secondshowing,
+	thirdshowing,
+	fourthshowing,
+	setfirstshowing,
+	setsecondshowing,
+	setthirdshowing,
+	setfourthshowing,
 }) => {
 	useEffect(() => {
+		localStorage.setItem('firstshowing', JSON.stringify(firstshowing));
+		localStorage.setItem('secondshowing', JSON.stringify(secondshowing));
+		localStorage.setItem('thirdshowing', JSON.stringify(thirdshowing));
+		localStorage.setItem('fourthshowing', JSON.stringify(fourthshowing));
 		localStorage.setItem('userInformation', JSON.stringify(userinfo));
 		localStorage.setItem('infoState', JSON.stringify(isValid));
-	}, [userinfo, isValid]);
-	
-	const [firstshowing, setfirstshowing] = useState(true);
-	const [secondshowing, setsecondshowing] = useState(false);
-	const [thirdshowing, setthirdshowing] = useState(false);
-	const [fourthshowing, setfourthshowing] = useState(false);
+	}, [
+		userinfo,
+		isValid,
+		firstshowing,
+		secondshowing,
+		thirdshowing,
+		fourthshowing,
+	]);
+
 	// show first page
 	if (userinfo && firstshowing) {
 		return (
