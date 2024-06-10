@@ -15,12 +15,16 @@ interface LoginProps {
 	setUserInfo: SetUserInfoType;
 	userinformation: userDBType;
 	setuserInformation: Function;
+	isvalid: boolean;
+	setisvalid: Function;
 }
 const Register: React.FC<LoginProps> = ({
 	userinfo,
 	setUserInfo,
 	userinformation,
 	setuserInformation,
+	isvalid,
+	setisvalid,
 }) => {
 	const [firstName, setfirstName] = useState('');
 	const [lastName, setlastName] = useState('');
@@ -32,7 +36,6 @@ const Register: React.FC<LoginProps> = ({
 	const [emailError, setemailError] = useState('');
 	const [passwordError, setpasswordError] = useState('');
 	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-	const [isValid, setisValid] = useState(false); // State variable to track form validity
 
 	const validateForm = () => {
 		// Return true if form is valid, false otherwise
@@ -97,14 +100,14 @@ const Register: React.FC<LoginProps> = ({
 		const formIsValid = validateForm();
 		if (formIsValid) {
 			// If form is valid, set isValid to true and redirect
-			setisValid(true);
+			setisvalid(true);
 			clearField();
 		} else {
 			// If form is not valid, set isValid to false
-			setisValid(false);
+			setisvalid(false);
 		}
 	}
-	if (!isValid) {
+	if (!isvalid) {
 		return (
 			<div className='relative'>
 				<Image
@@ -115,8 +118,8 @@ const Register: React.FC<LoginProps> = ({
 				<Navbar
 					userinfo={userinfo}
 					setUserInfo={setUserInfo}
-					isValid={isValid}
-					setisValid={setisValid}
+					isValid={isvalid}
+					setisValid={setisvalid}
 				/>
 				<div className='loginWrapper md:w-[70vw] w-full lg:h-[80vh] md:h-[75vh] md:border-[1px] border-[#e8e8e8] md:mx-[15%]   rounded-lg flex items-start overflow-hidden z-50 md:bg-white'>
 					{/* the left side of login */}
@@ -207,6 +210,12 @@ const Register: React.FC<LoginProps> = ({
 										testFields(email, setemailError, 'Email');
 										// check password
 										testFields(password, setpasswordError, 'Password');
+										setUserInfo({
+											fname: firstName,
+											lname: lastName,
+											mail: email,
+											pword: password,
+										});
 									}}
 								/>
 							</form>
@@ -215,12 +224,12 @@ const Register: React.FC<LoginProps> = ({
 				</div>
 			</div>
 		);
-	} else {
+	} else if (isvalid) {
 		return (
 			<Home
 				userinfo={userinfo}
-				isValid={isValid}
-				setisValid={setisValid}
+				isValid={isvalid}
+				setisValid={setisvalid}
 				setUserInfo={setUserInfo}
 				userInformation={userinformation}
 				setuserInformation={setuserInformation}
