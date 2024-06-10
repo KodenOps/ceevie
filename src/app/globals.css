@@ -58,3 +58,6 @@ input[type='number'] {
 .formCss {
 	@apply p-[16px] border-2 border-dotted border-[var(--primary)] md:w-[45%] w-full outline-[#6D69FA];
 }
+select {
+	@apply bg-none
+}
