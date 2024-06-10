@@ -4,16 +4,24 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import loginImg from '../../public/asset/login_img.jpg';
 import Pattern from '../../public/asset/pattern.png';
-import Home from './Home';
+
 import { UserInfo } from '../type/UserInfo';
-import { userDB } from '@/data/userDB';
+import { userDB, userDBType } from '@/data/userDB';
+import Home from './Home';
 
 type SetUserInfoType = (userinfo: UserInfo) => void;
 interface LoginProps {
 	userinfo: UserInfo;
 	setUserInfo: SetUserInfoType;
+	userinformation: userDBType;
+	setuserInformation: Function;
 }
-const Register: React.FC<LoginProps> = ({ userinfo, setUserInfo }) => {
+const Register: React.FC<LoginProps> = ({
+	userinfo,
+	setUserInfo,
+	userinformation,
+	setuserInformation,
+}) => {
 	const [firstName, setfirstName] = useState('');
 	const [lastName, setlastName] = useState('');
 	const [email, setemail] = useState('');
@@ -213,8 +221,9 @@ const Register: React.FC<LoginProps> = ({ userinfo, setUserInfo }) => {
 				userinfo={userinfo}
 				isValid={isValid}
 				setisValid={setisValid}
-				userDB={userDB}
 				setUserInfo={setUserInfo}
+				userInformation={userinformation}
+				setuserInformation={setuserInformation}
 			/>
 		);
 	}

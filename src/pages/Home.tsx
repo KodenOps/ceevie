@@ -3,21 +3,22 @@ import React from 'react';
 import { UserInfo } from '../type/UserInfo';
 import Navbar from '@/components/Navbar';
 import { FaRegSmileBeam } from 'react-icons/fa';
-import { userDB } from '@/data/userDB';
-import { MdArrowRight, MdArrowRightAlt } from 'react-icons/md';
+import { userDBType } from '@/data/userDB';
+
 interface Props {
 	userinfo: UserInfo;
 	isValid: boolean;
 	setisValid: Function;
-	userDB: Object;
 	setUserInfo: Function;
+	userInformation: userDBType;
+	setuserInformation: Function;
 }
 const Home: React.FC<Props> = ({
 	userinfo,
 	isValid,
 	setisValid,
 	setUserInfo,
-	userDB,
+	userInformation,
 }) => {
 	if (userinfo) {
 		return (
@@ -26,7 +27,6 @@ const Home: React.FC<Props> = ({
 					userinfo={userinfo}
 					isValid={isValid}
 					setisValid={setisValid}
-					// UserInfo={UserInfo}
 					setUserInfo={setUserInfo}
 				/>
 				<div className='loginWrapper md:w-[70vw] w-full lg:h-[80vh] md:h-[75vh] md:border-[2px] border-[#e8e8e8] md:mx-[15%]   rounded-lg flex flex-col items-start overflow-hidden z-50 md:bg-white px-[24px] pt-[4px] pb-[24px]'>
@@ -44,7 +44,7 @@ const Home: React.FC<Props> = ({
 					{/* the main form */}
 					<form
 						action='/'
-						className='flex w-full flex-wrap md:mt-[100px] mt-[32px] gap-5'
+						className='flex w-full flex-wrap md:mt-[100px] mt-[32px] gap-10'
 						onSubmit={(e) => e.preventDefault()}>
 						{/* gender */}
 						<select
@@ -60,6 +60,8 @@ const Home: React.FC<Props> = ({
 							className=' formCss'
 							type='email'
 							placeholder='Enter Your Official Email'
+							// value={userInformation}
+							onChange={() => ''}
 						/>
 						<select
 							className=' formCss'
@@ -97,13 +99,13 @@ const Home: React.FC<Props> = ({
 							/>
 						</div>
 						<input
-							className=' p-[16px] border-2 border-dotted border-[var(--primary)]  md:w-[92%] w-full outline-[#6D69FA]'
-							type='textarea'
+							className=' p-[16px] border-2 border-dotted border-[var(--primary)]  md:w-[93.5%] w-full outline-[#6D69FA]'
 							placeholder='Enter Your Home Address'
 						/>
 						<button
 							type='submit'
-							className='bg-[var(--primary)] md:w-[30%] w-full py-[12px] rounded text-white mt-[16px] flex items-center justify-center gap-2'>
+							className='bg-[var(--primary)] md:w-[30%] w-full py-[12px] rounded text-white mt-[16px] flex items-center justify-center gap-2'
+							onClick={() => console.log(userInformation.email)}>
 							Next
 						</button>
 					</form>
