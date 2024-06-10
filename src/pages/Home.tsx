@@ -44,7 +44,8 @@ const Home: React.FC<Props> = ({
 					{/* the main form */}
 					<form
 						action='/'
-						className='flex w-full flex-wrap md:mt-[100px] mt-[32px] gap-5'>
+						className='flex w-full flex-wrap md:mt-[100px] mt-[32px] gap-5'
+						onSubmit={(e) => e.preventDefault()}>
 						{/* gender */}
 						<select
 							className=' formCss'
