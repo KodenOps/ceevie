@@ -4,6 +4,14 @@ import { UserInfo } from '../type/UserInfo';
 import Navbar from '@/components/Navbar';
 import { FaRegSmileBeam } from 'react-icons/fa';
 import { userDBType } from '@/data/userDB';
+import { MdOutlineHdrPlus, MdPlusOne } from 'react-icons/md';
+import { CiCirclePlus } from 'react-icons/ci';
+
+const years: number[] = [
+	2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012,
+	2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000, 1999,
+	1998, 1997, 1996, 1995, 1994, 1993, 1992, 1991, 1990,
+];
 
 interface Props {
 	userinfo: UserInfo;
@@ -22,6 +30,8 @@ const Home: React.FC<Props> = ({
 }) => {
 	const [firstshowing, setfirstshowing] = useState(true);
 	const [secondshowing, setsecondshowing] = useState(false);
+	const [thirdshowing, setthirdshowing] = useState(false);
+	const [fourthshowing, setfourthshowing] = useState(false);
 	// show first page
 	if (userinfo && firstshowing) {
 		return (
@@ -41,7 +51,9 @@ const Home: React.FC<Props> = ({
 							<h3 className='text md:text-3xl text-xl font-bold'>
 								Nice Meeting you, {userinfo.fname}
 							</h3>
-							<p className='md:text-xl text-md'>Let's get to know you more</p>
+							<p className='md:text-xl text-md capitalize'>
+								Let's get to know you more
+							</p>
 						</div>
 					</div>
 					{/* the main form */}
@@ -110,10 +122,10 @@ const Home: React.FC<Props> = ({
 							className='bg-[var(--primary)] md:w-[30%] w-full py-[12px] rounded text-white mt-[16px] flex items-center justify-center gap-2'
 							onClick={(e) => {
 								e.preventDefault();
-								setfirstshowing(!firstshowing);
-								setsecondshowing(!secondshowing);
+								setfirstshowing(!firstshowing); //set first to false
+								setsecondshowing(!secondshowing); //set second to true
 							}}>
-							Next
+							Proceed To Education
 						</button>
 					</form>
 				</div>
@@ -140,8 +152,8 @@ const Home: React.FC<Props> = ({
 							<h3 className='text md:text-3xl text-xl font-bold'>
 								Information Stored, {userinfo.fname}
 							</h3>
-							<p className='md:text-xl text-md'>
-								Let's talk about your education now
+							<p className='md:text-xl text-md capitalize'>
+								Let's talk about your secondary education now
 							</p>
 						</div>
 					</div>
@@ -153,28 +165,271 @@ const Home: React.FC<Props> = ({
 						onSubmit={(e) => {
 							e.preventDefault();
 						}}>
-						{/* gender */}
+						<input
+							className=' formCss'
+							type='text'
+							placeholder='Secondary School Name'
+							// value={userInformation}
+							onChange={() => ''}
+						/>
+						<input
+							className=' formCss'
+							type='text'
+							placeholder='Certificate Held'
+							// value={userInformation}
+							onChange={() => ''}
+						/>
 						<select
 							className=' formCss'
-							name='gender'
-							id='gender'>
-							<option value='Select option'>Select Phone</option>
-							<option value='Male'>Male</option>
-							<option value='Female'>Female</option>
-							<option value='Others'>Others</option>
+							name='startYear'
+							id='startYear'>
+							<option value='Select option'>Select Start Year </option>
+							{years.map((year) => {
+								return (
+									<option
+										key={year}
+										value='Male'>
+										{year}
+									</option>
+								);
+							})}
 						</select>
+						<select
+							className=' formCss'
+							name='endYear'
+							id='endYear'>
+							<option value='Select option'>Select End Year </option>
+							{years.map((year) => {
+								return <option value='Male'>{year}</option>;
+							})}
+						</select>
+						<div className='btns flex items-center flex-wrap  md:flex-row flex-col-reverse w-full md:gap-2'>
+							{/* end of inputs */}
+							<button
+								className='border-[var(--primary)] text-[var(--primary)] border-2  md:w-[20%] w-full py-[12px] rounded  mt-[16px] flex items-center justify-center gap-2'
+								onClick={(e) => {
+									e.preventDefault();
+									setsecondshowing(!secondshowing); //setting second to false
+									setfirstshowing(!firstshowing); //setting first to true back
+								}}>
+								Go Back To General Info
+							</button>
+							<button
+								className='bg-[var(--primary)] md:w-[20%] w-full py-[12px] rounded text-white mt-[16px] flex items-center justify-center gap-2'
+								onClick={(e) => {
+									e.preventDefault();
+									setsecondshowing(!secondshowing); //set second false
+									setthirdshowing(!thirdshowing); //set third to true
+								}}>
+								Proceed To Higher Institution
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		);
+	} else if (userinfo && thirdshowing) {
+		return (
+			<div>
+				<Navbar
+					userinfo={userinfo}
+					isValid={isValid}
+					setisValid={setisValid}
+					setUserInfo={setUserInfo}
+				/>
+				<div className='loginWrapper md:w-[70vw] w-full lg:h-[80vh] md:h-[75vh] md:border-[2px] border-[#e8e8e8] md:mx-[15%]   rounded-lg flex flex-col items-start overflow-hidden z-50 md:bg-white px-[24px] pt-[4px] pb-[24px]'>
+					<div className='greetUser flex items-center gap-[16px] justify-start w-full border-b-2 pb-[20px] md:pt-[20px] '>
+						<span className='w-[35px] h-[35px] bg-[#6D69FA] rounded flex justify-center items-center text-white'>
+							<FaRegSmileBeam size={20} />
+						</span>
+						<div>
+							<h3 className='text md:text-3xl text-xl font-bold'>
+								Information Stored, {userinfo.fname}
+							</h3>
+							<p className='md:text-xl text-md capitalize'>
+								Let's talk about your Higher education now
+							</p>
+						</div>
+					</div>
+					{/* the main form */}
 
-						<button
-							className='bg-[var(--primary)] md:w-[30%] w-full py-[12px] rounded text-white mt-[16px] flex items-center justify-center gap-2'
-							onClick={(e) => e.preventDefault()}>
-							Next
-						</button>
+					<form
+						action='/'
+						className='flex w-full flex-wrap md:mt-[100px] mt-[32px] gap-10'
+						onSubmit={(e) => {
+							e.preventDefault();
+						}}>
+						<input
+							className=' formCss'
+							type='text'
+							placeholder='Higher Institution Name'
+							// value={userInformation}
+							onChange={() => ''}
+						/>
+						<input
+							className=' formCss'
+							type='text'
+							placeholder='Certificate Held'
+							// value={userInformation}
+							onChange={() => ''}
+						/>
+						<select
+							className=' formCss'
+							name='startYear'
+							id='startYear'>
+							<option value='Select option'>Select Start Year </option>
+							{years.map((year) => {
+								return <option value='Male'>{year}</option>;
+							})}
+						</select>
+						<select
+							className=' formCss'
+							name='endYear'
+							id='endYear'>
+							<option value='Select option'>Select End Year </option>
+							{years.map((year) => {
+								return <option value='Male'>{year}</option>;
+							})}
+						</select>
+						<div className='btns flex items-center flex-wrap  md:flex-row flex-col-reverse w-full md:gap-2'>
+							{/* end of inputs */}
+							<button
+								className='border-[var(--primary)] text-[var(--primary)] border-2  md:w-[20%] w-full py-[12px] rounded  mt-[16px] flex items-center justify-center gap-2'
+								onClick={(e) => {
+									e.preventDefault();
+									setthirdshowing(!thirdshowing); //set third to false
+									setsecondshowing(!secondshowing); //set second to true
+								}}>
+								Go Back To Secondary School
+							</button>
+							<button
+								className='bg-[var(--primary)] md:w-[20%] w-full py-[12px] rounded text-white mt-[16px] flex items-center justify-center gap-2'
+								onClick={(e) => {
+									e.preventDefault();
+									setthirdshowing(!thirdshowing); //set third to false
+									setfourthshowing(!fourthshowing); //set fourth to true
+								}}>
+								Proceed To Experience
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		);
+		// End of Higher Education
+
+		// Start of Experience
+	} else if (userinfo && fourthshowing) {
+		return (
+			<div className='pb-[40px]'>
+				<Navbar
+					userinfo={userinfo}
+					isValid={isValid}
+					setisValid={setisValid}
+					setUserInfo={setUserInfo}
+				/>
+				<div className='loginWrapper md:w-[70vw] w-full lg:h-[80vh] md:h-[75vh] md:border-[2px] border-[#e8e8e8] md:mx-[15%]   rounded-lg flex flex-col items-start overflow-hidden z-50 md:bg-white px-[24px] pt-[4px] pb-[24px]'>
+					<div className='greetUser flex items-center gap-[16px] justify-start w-full border-b-2 pb-[20px] md:pt-[20px] '>
+						<span className='w-[35px] h-[35px] bg-[#6D69FA] rounded flex justify-center items-center text-white'>
+							<FaRegSmileBeam size={20} />
+						</span>
+						<div>
+							<h3 className='text md:text-3xl text-xl font-bold'>
+								Information Stored, {userinfo.fname}
+							</h3>
+							<p className='md:text-xl text-md capitalize'>
+								Let's talk about the great things you've done
+							</p>
+						</div>
+					</div>
+					{/* the main form */}
+
+					<form
+						action='/'
+						className='flex w-full flex-wrap md:mt-[100px] mt-[32px] gap-10'
+						onSubmit={(e) => {
+							e.preventDefault();
+						}}>
+						<input
+							className=' formCss'
+							type='text'
+							placeholder='Your Role'
+							// value={userInformation}
+							onChange={() => ''}
+						/>
+						<input
+							className=' formCss'
+							type='text'
+							placeholder='Organization Name'
+							// value={userInformation}
+							onChange={() => ''}
+						/>
+						<select
+							className=' formCss'
+							name='startYear'
+							id='startYear'>
+							<option value='Select option'>Select Start Year </option>
+							{years.map((year) => {
+								return (
+									<option
+										key={year}
+										value='Male'>
+										{year}
+									</option>
+								);
+							})}
+						</select>
+						<select
+							className=' formCss'
+							name='endYear'
+							id='endYear'>
+							<option value='Select option'>Select End Year </option>
+							{years.map((year) => {
+								return (
+									<option
+										key={year}
+										value='Male'>
+										{year}
+									</option>
+								);
+							})}
+						</select>
+						<input
+							className=' formCss'
+							type='text'
+							placeholder='Achievement - one bullet point (Optional)'
+							// value={userInformation}
+							onChange={() => ''}
+						/>
+						<div className='addMore flex items-center justify-start gap-4'>
+							<span className='w-[50px] h-[50px] flex justify-center items-center border-2 bg-[#BBDAFF] rounded-full'>
+								<CiCirclePlus size={30} />
+							</span>
+							<button className='text-[var(--primary)] font-medium'>
+								Add More Achievement
+							</button>
+						</div>
+						{/* end of inputs */}
+						<div className='btns flex items-center flex-wrap  md:flex-row flex-col-reverse w-full md:gap-2'>
+							<button
+								className='border-[var(--primary)] text-[var(--primary)] border-2  md:w-[20%] w-full py-[12px] rounded  mt-[16px] flex items-center justify-center gap-2'
+								onClick={(e) => {
+									e.preventDefault();
+									setsecondshowing(!secondshowing); //set second to true
+									setthirdshowing(!thirdshowing); //set third to false
+								}}>
+								Go Back To Higher Institution
+							</button>
+							<button className='bg-[var(--primary)] md:w-[20%] w-full py-[12px] rounded text-white mt-[16px] flex items-center justify-center gap-2'>
+								Proceed To Experience
+							</button>
+						</div>
 					</form>
 				</div>
 			</div>
 		);
 	} else {
-		console.log('first');
+		console.log('hello');
 	}
 };
 
