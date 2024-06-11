@@ -1,15 +1,15 @@
 interface roletype {
 	organization: string;
 	roles: string;
-	startDate: string;
-	endDate: string;
+	rstartDate: string;
+	rendDate: string;
 	achievementList: string[];
 }
 interface higherInstitution {
 	name: string;
-	CertificateHeld: string;
-	startDate: string;
-	endDate: string;
+	Certificate_Held: string;
+	hstartDate: string;
+	hendDate: string;
 }
 interface CertificationType {
 	name: string;
@@ -18,8 +18,8 @@ interface CertificationType {
 export interface secondarySchool {
 	name: string;
 	CertificateHeld: string;
-	startDate: string;
-	endDate: string;
+	sstartDate: string;
+	sendDate: string;
 }
 export interface userDBType {
 	username: string;
@@ -34,7 +34,7 @@ export interface userDBType {
 	addr: string;
 	secondarySchool: secondarySchool;
 	higherInstitution: higherInstitution;
-	role: roletype[];
+	userRole: roletype[];
 	skills: string[];
 	Certification: CertificationType[];
 	linkenIn: string;
@@ -54,21 +54,21 @@ export const userDB: userDBType = {
 	secondarySchool: {
 		name: '',
 		CertificateHeld: '',
-		startDate: '',
-		endDate: '',
+		sstartDate: '',
+		sendDate: '',
 	},
 	higherInstitution: {
 		name: '',
-		CertificateHeld: '',
-		startDate: '',
-		endDate: '',
+		Certificate_Held: '',
+		hstartDate: '',
+		hendDate: '',
 	},
-	role: [
+	userRole: [
 		{
 			organization: '',
 			roles: '',
-			startDate: '',
-			endDate: '',
+			rstartDate: '',
+			rendDate: '',
 			achievementList: [''],
 		},
 	],

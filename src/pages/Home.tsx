@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { UserInfo } from '../type/UserInfo';
 import Navbar from '@/components/Navbar';
-import { FaRegSmileBeam } from 'react-icons/fa';
+import { FaBook, FaRegSmileBeam, FaUserGraduate } from 'react-icons/fa';
 import { secondarySchool, userDBType } from '@/data/userDB';
-import { MdOutlineHdrPlus, MdPlusOne } from 'react-icons/md';
+import { MdOutlineHdrPlus, MdPlusOne, MdWorkOutline } from 'react-icons/md';
 import { CiCirclePlus } from 'react-icons/ci';
 
 const years: number[] = [
@@ -235,14 +235,14 @@ const Home: React.FC<Props> = ({
 				<div className='loginWrapper md:w-[70vw] w-full lg:h-[80vh] md:h-[75vh] md:border-[2px] border-[#e8e8e8] md:mx-[15%]   rounded-lg flex flex-col items-start overflow-hidden z-50 md:bg-white px-[24px] pt-[4px] pb-[24px]'>
 					<div className='greetUser flex items-center gap-[16px] justify-start w-full border-b-2 pb-[20px] md:pt-[20px] '>
 						<span className='w-[35px] h-[35px] bg-[#6D69FA] rounded flex justify-center items-center text-white'>
-							<FaRegSmileBeam size={20} />
+							<FaBook size={20} />
 						</span>
 						<div>
 							<h3 className='text md:text-3xl text-xl font-bold'>
-								Information Stored, {userinfo.fname}
+								College/Secondary School
 							</h3>
 							<p className='md:text-xl text-md capitalize'>
-								Let's talk about your secondary education now
+								Tell me about your college education
 							</p>
 						</div>
 					</div>
@@ -254,74 +254,86 @@ const Home: React.FC<Props> = ({
 						onSubmit={(e) => {
 							e.preventDefault();
 						}}>
-						<input
-							className=' formCss'
-							type='text'
-							placeholder='Secondary School Name'
-							value={userInformation.secondarySchool.name}
-							onChange={(e) => {
-								setuserInformation((prev: userDBType) => ({
-									...prev,
-									secondarySchool: {
-										...prev.secondarySchool,
-										name: e.target.value,
-									},
-								}));
-							}}
-						/>
-						<input
-							className=' formCss'
-							type='text'
-							name='CertificateHeld'
-							placeholder='Certificate Held'
-							value={userInformation.secondarySchool.CertificateHeld}
-							onChange={(e) => {
-								setuserInformation((prev: userDBType) => ({
-									...prev,
-									secondarySchool: {
-										...prev.secondarySchool,
-										CertificateHeld: e.target.value.toUpperCase(),
-									},
-								}));
-								// console.log(userInformation.email);
-							}}
-						/>
-						<select
-							className=' formCss'
-							name='startYear'
-							id='startYear'
-							value={userInformation.secondarySchool.startDate}
-							onChange={(e) => {
-								setuserInformation((prev: userDBType) => ({
-									...prev,
-									secondarySchool: {
-										...prev.secondarySchool,
-										startDate: e.target.value,
-									},
-								}));
-							}}>
-							<option value='Select option'>Select Start Year </option>
-							{years.map((year) => {
-								return (
-									<option
-										key={year}
-										value={year}>
-										{year}
-									</option>
-								);
-							})}
-						</select>
+						<div className='md:w-[48%] w-full flex flex-col'>
+							<label htmlFor='SecSchoolName'>School Name</label>
+							<input
+								className=' formCss'
+								name='SecSchoolName'
+								type='text'
+								placeholder='Secondary School Name'
+								value={userInformation.secondarySchool.name}
+								onChange={(e) => {
+									setuserInformation((prev: userDBType) => ({
+										...prev,
+										secondarySchool: {
+											...prev.secondarySchool,
+											name: e.target.value,
+										},
+									}));
+								}}
+							/>
+						</div>
+						<div className='md:w-[48%] w-full flex flex-col'>
+							<label htmlFor='CertificateHeld'>Certification Name</label>
+							<input
+								className=' formCss'
+								type='text'
+								name='CertificateHeld'
+								placeholder='Certificate Held'
+								value={userInformation.secondarySchool.CertificateHeld}
+								onChange={(e) => {
+									setuserInformation((prev: userDBType) => ({
+										...prev,
+										secondarySchool: {
+											...prev.secondarySchool,
+											CertificateHeld: e.target.value.toUpperCase(),
+										},
+									}));
+									// console.log(userInformation.email);
+								}}
+							/>
+						</div>
+						<div className='md:w-[48%] w-full flex flex-col'>
+							<label htmlFor='startYear'>Start Year</label>
+							<select
+								className=' formCss'
+								name='startYear'
+								id='startYear'
+								value={userInformation.secondarySchool.sstartDate}
+								onChange={(e) => {
+									setuserInformation((prev: userDBType) => ({
+										...prev,
+										secondarySchool: {
+											...prev.secondarySchool,
+											sstartDate: e.target.value,
+										},
+									}));
+								}}>
+								<option value='Select option'>Select Start Year </option>
+								{years.map((year) => {
+									return (
+										<option
+											key={year}
+											value={year}>
+											{year}
+										</option>
+									);
+								})}
+							</select>
+						</div>
+						<div className='md:w-[48%] w-full flex flex-col'>
+							<label htmlFor='endYear'>End Year</label>
 						<select
 							className=' formCss'
 							name='endYear'
 							id='endYear'
-							value={userInformation.secondarySchool.endDate}
+							value={userInformation.secondarySchool.sendDate}
 							onChange={(e) => {
 								setuserInformation((prev: userDBType) => ({
 									...prev,
 									secondarySchool: {
 										...prev.secondarySchool,
-										endDate: e.target.value,
+										sendDate: e.target.value,
 									},
 								}));
 							}}>
@@ -335,7 +347,8 @@ const Home: React.FC<Props> = ({
 									</option>
 								);
 							})}
-						</select>
+							</select>
+							</div>
 						<div className='btns flex items-center flex-wrap  md:flex-row flex-col-reverse w-full md:gap-2'>
 							{/* end of inputs */}
 							<button
@@ -373,14 +386,14 @@ const Home: React.FC<Props> = ({
 				<div className='loginWrapper md:w-[70vw] w-full lg:h-[80vh] md:h-[75vh] md:border-[2px] border-[#e8e8e8] md:mx-[15%]   rounded-lg flex flex-col items-start overflow-hidden z-50 md:bg-white px-[24px] pt-[4px] pb-[24px]'>
 					<div className='greetUser flex items-center gap-[16px] justify-start w-full border-b-2 pb-[20px] md:pt-[20px] '>
 						<span className='w-[35px] h-[35px] bg-[#6D69FA] rounded flex justify-center items-center text-white'>
-							<FaRegSmileBeam size={20} />
+							<FaUserGraduate size={20} />
 						</span>
 						<div>
 							<h3 className='text md:text-3xl text-xl font-bold'>
-								Information Stored, {userinfo.fname}
+								Higher Education
 							</h3>
 							<p className='md:text-xl text-md capitalize'>
-								Let's talk about your Higher education now
+								Tell me more about your education
 							</p>
 						</div>
 					</div>
@@ -411,12 +424,13 @@ const Home: React.FC<Props> = ({
 							className=' formCss'
 							type='text'
 							placeholder='Certificate Held'
+							value={userInformation.higherInstitution.Certificate_Held}
 							onChange={(e) => {
 								setuserInformation((prev: userDBType) => ({
 									...prev,
 									higherInstitution: {
 										...prev.higherInstitution,
-										CertificateHeld: e.target.value,
+										Certificate_Held: e.target.value,
 									},
 								}));
 							}}
@@ -425,12 +439,13 @@ const Home: React.FC<Props> = ({
 							className=' formCss'
 							name='startYear'
 							id='startYear'
+							value={userInformation.higherInstitution.hstartDate}
 							onChange={(e) => {
 								setuserInformation((prev: userDBType) => ({
 									...prev,
 									higherInstitution: {
 										...prev.higherInstitution,
-										startDate: e.target.value,
+										hstartDate: e.target.value,
 									},
 								}));
 							}}>
@@ -449,12 +464,13 @@ const Home: React.FC<Props> = ({
 							className=' formCss'
 							name='endYear'
 							id='endYear'
+							value={userInformation.higherInstitution.hendDate}
 							onChange={(e) => {
 								setuserInformation((prev: userDBType) => ({
 									...prev,
 									higherInstitution: {
 										...prev.higherInstitution,
-										endDate: e.target.value,
+										hendDate: e.target.value,
 									},
 								}));
 							}}>
@@ -509,14 +525,14 @@ const Home: React.FC<Props> = ({
 				<div className='loginWrapper md:w-[70vw] w-full lg:h-[80vh] md:h-[75vh] md:border-[2px] border-[#e8e8e8] md:mx-[15%]   rounded-lg flex flex-col items-start overflow-hidden z-50 md:bg-white px-[24px] pt-[4px] pb-[24px]'>
 					<div className='greetUser flex items-center gap-[16px] justify-start w-full border-b-2 pb-[20px] md:pt-[20px] '>
 						<span className='w-[35px] h-[35px] bg-[#6D69FA] rounded flex justify-center items-center text-white'>
-							<FaRegSmileBeam size={20} />
+							<MdWorkOutline size={20} />
 						</span>
 						<div>
 							<h3 className='text md:text-3xl text-xl font-bold'>
-								Information Stored, {userinfo.fname}
+								Work Experience
 							</h3>
 							<p className='md:text-xl text-md capitalize'>
-								Let's talk about the great things you've done
+								Share the great things you've done
 							</p>
 						</div>
 					</div>
@@ -528,59 +544,113 @@ const Home: React.FC<Props> = ({
 						onSubmit={(e) => {
 							e.preventDefault();
 						}}>
-						<input
-							className=' formCss'
-							type='text'
-							placeholder='Your Role'
-							// value={userInformation.role[0].roles}
-							// onChange={(e) => {
-							// 	setuserInformation((prev: userDBType) => console.log());
-							// }}
-						/>
-						<input
-							className=' formCss'
-							type='text'
-							placeholder='Organization Name'
-							// value={userInformation}
-							onChange={() => ''}
-						/>
-						<select
-							className=' formCss'
-							name='startYear'
-							id='startYear'>
-							<option value='Select option'>Select Start Year </option>
-							{years.map((year) => {
-								return (
-									<option
-										key={year}
-										value='Male'>
-										{year}
-									</option>
-								);
-							})}
-						</select>
-						<select
-							className=' formCss'
-							name='endYear'
-							id='endYear'>
-							<option value='Select option'>Select End Year </option>
-							{years.map((year) => {
-								return (
-									<option
-										key={year}
-										value='Male'>
-										{year}
-									</option>
-								);
-							})}
-						</select>
-						<input
-							className=' formCss'
-							type='text'
-							placeholder='Achievement - one bullet point (Optional)'
-							// value={userInformation}
-							onChange={() => ''}
-						/>
+						<div className='md:w-[48%] w-full flex flex-col'>
+							<label htmlFor='user Role'>Job Title</label>
+							<input
+								className=' formCss'
+								name='user Role'
+								type='text'
+								value={userInformation.userRole[0].roles}
+								placeholder='Job Title'
+								onChange={(e) => {
+									setuserInformation((prev: userDBType) => ({
+										...prev,
+										userRole: prev.userRole.map((role, index) =>
+											index === 0 ? { ...role, roles: e.target.value } : role
+										),
+									}));
+								}}
+							/>
+						</div>
+						<div className='md:w-[48%] w-full flex flex-col'>
+							<label htmlFor='Organization'>Organization Name</label>
+							<input
+								className=' formCss'
+								type='text'
+								name='Organization'
+								placeholder='Organization Name'
+								value={userInformation.userRole[0].organization}
+								onChange={(e) => {
+									setuserInformation((prev: userDBType) => ({
+										...prev,
+										userRole: prev.userRole.map((role, index) =>
+											index === 0
+												? { ...role, organization: e.target.value }
+												: role
+										),
+									}));
+								}}
+							/>
+						</div>
+						<div className='md:w-[48%] w-full flex flex-col'>
+							<label htmlFor='startYear'>Start Year</label>
+							<select
+								className=' formCss'
+								name='startYear'
+								id='startYear'
+								value={userInformation.userRole[0].rstartDate}
+								onChange={(e) => {
+									setuserInformation((prev: userDBType) => ({
+										...prev,
+										userRole: prev.userRole.map((role, index) =>
+											index === 0
+												? { ...role, rstartDate: e.target.value }
+												: role
+										),
+									}));
+								}}>
+								<option value='Select option'>Select Start Year </option>
+								{years.map((year) => {
+									return (
+										<option
+											key={year}
+											value={year}>
+											{year}
+										</option>
+									);
+								})}
+							</select>
+						</div>
+						<div className='md:w-[48%] w-full flex flex-col'>
+							<label htmlFor='endYear'>End Year</label>
+							<select
+								className=' formCss'
+								name='endYear'
+								id='endYear'
+								value={userInformation.userRole[0].rendDate}
+								onChange={(e) => {
+									setuserInformation((prev: userDBType) => ({
+										...prev,
+										userRole: prev.userRole.map((role, index) =>
+											index === 0 ? { ...role, rendDate: e.target.value } : role
+										),
+									}));
+								}}>
+								<option value='Select option'>Select End Year </option>
+								{years.map((year) => {
+									return (
+										<option
+											key={year}
+											value={year}>
+											{year}
+										</option>
+									);
+								})}
+							</select>
+						</div>
+
+						<div className='md:w-[48%] w-full flex flex-col'>
+							<label htmlFor='achievement'>Achievement 1</label>
+							<input
+								className=' formCss'
+								name='achievement'
+								type='text'
+								placeholder='Achievement - one bullet point (Optional)'
+								// value={userInformation}
+								onChange={() => ''}
+							/>
+						</div>
+
 						<div className='addMore flex items-center justify-start gap-4'>
 							<span className='w-[50px] h-[50px] flex justify-center items-center border-2 bg-[#BBDAFF] rounded-full'>
 								<CiCirclePlus size={30} />
@@ -592,13 +662,22 @@ const Home: React.FC<Props> = ({
 						{/* end of inputs */}
 						<div className='btns flex items-center flex-wrap  md:flex-row flex-col-reverse w-full md:gap-2'>
 							<button
-								className='border-[var(--primary)] text-[var(--primary)] border-2  md:w-[20%] w-full py-[12px] rounded  mt-[16px] flex items-center justify-center gap-2'
+								className=' text-[var(--primary)]   md:w-[20%] w-full py-[12px] rounded font-medium mt-[16px] flex items-center justify-center gap-2'
 								onClick={(e) => {
 									e.preventDefault();
 									setsecondshowing(!secondshowing); //set second to true
 									setthirdshowing(!thirdshowing); //set third to false
 								}}>
 								Go Back To Higher Institution
+							</button>
+							<button
+								className='border-[var(--primary)] text-[var(--primary)] border-2  md:w-[20%] w-full py-[12px] rounded  mt-[16px] flex items-center justify-center gap-2'
+								onClick={(e) => {
+									e.preventDefault();
+									// setsecondshowing(!secondshowing); //set second to true
+									// setthirdshowing(!thirdshowing); //set third to false
+								}}>
+								Add More Experience
 							</button>
 							<button className='bg-[var(--primary)] md:w-[20%] w-full py-[12px] rounded text-white mt-[16px] flex items-center justify-center gap-2'>
 								Proceed To Experience
