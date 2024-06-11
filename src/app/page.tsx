@@ -4,6 +4,7 @@ import { userDB, userDBType } from '../data/userDB';
 import Login from '@/pages/Register';
 import { UserInfo } from '../type/UserInfo';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/react';
 const page = () => {
 	// type SetUserInfoType = (userInfo: UserInfo) => void;
 
@@ -45,6 +46,8 @@ const page = () => {
 				setthirdshowing={setthirdshowing}
 				setfourthshowing={setfourthshowing}
 			/>
+			<Analytics />
+			<SpeedInsights />
 		</div>
 	);
 };
