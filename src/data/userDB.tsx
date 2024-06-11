@@ -15,7 +15,7 @@ interface CertificationType {
 	name: string;
 	year: string;
 }
-interface secondarySchool {
+export interface secondarySchool {
 	name: string;
 	CertificateHeld: string;
 	startDate: string;
@@ -29,6 +29,7 @@ export interface userDBType {
 	gender: string;
 	email: string;
 	eduLevel: string;
+	countryCode: string;
 	mobileNum: Number;
 	addr: string;
 	secondarySchool: secondarySchool;
@@ -39,7 +40,7 @@ export interface userDBType {
 	linkenIn: string;
 	portfolio: string;
 }
-export const userDB:userDBType = {
+export const userDB: userDBType = {
 	username: '',
 	password: '',
 	firstname: '',
@@ -47,6 +48,7 @@ export const userDB:userDBType = {
 	gender: '',
 	email: 'kjjk',
 	eduLevel: '',
+	countryCode: '+234',
 	mobileNum: 4,
 	addr: '',
 	secondarySchool: {

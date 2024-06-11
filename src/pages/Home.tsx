@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { UserInfo } from '../type/UserInfo';
 import Navbar from '@/components/Navbar';
 import { FaRegSmileBeam } from 'react-icons/fa';
-import { userDBType } from '@/data/userDB';
+import { secondarySchool, userDBType } from '@/data/userDB';
 import { MdOutlineHdrPlus, MdPlusOne } from 'react-icons/md';
 import { CiCirclePlus } from 'react-icons/ci';
 
@@ -35,6 +35,7 @@ const Home: React.FC<Props> = ({
 	setisValid,
 	setUserInfo,
 	userInformation,
+	setuserInformation,
 	firstshowing,
 	secondshowing,
 	thirdshowing,
@@ -44,6 +45,7 @@ const Home: React.FC<Props> = ({
 	setthirdshowing,
 	setfourthshowing,
 }) => {
+	const [placeholder, setplaceholder] = useState('Enter Mobile Number');
 	useEffect(() => {
 		localStorage.setItem('firstshowing', JSON.stringify(firstshowing));
 		localStorage.setItem('secondshowing', JSON.stringify(secondshowing));
@@ -51,6 +53,7 @@ const Home: React.FC<Props> = ({
 		localStorage.setItem('fourthshowing', JSON.stringify(fourthshowing));
 		localStorage.setItem('userInformation', JSON.stringify(userinfo));
 		localStorage.setItem('infoState', JSON.stringify(isValid));
+		localStorage.setItem('usersDB', JSON.stringify(userInformation));
 	}, [
 		userinfo,
 		isValid,
@@ -58,6 +61,7 @@ const Home: React.FC<Props> = ({
 		secondshowing,
 		thirdshowing,
 		fourthshowing,
+		userInformation,
 	]);
 
 	// show first page
@@ -92,59 +96,115 @@ const Home: React.FC<Props> = ({
 						onSubmit={(e) => e.preventDefault()}>
 						{/* gender */}
 						<select
+							value={userInformation.gender}
 							className=' formCss'
 							name='gender'
-							id='gender'>
+							id='gender'
+							onChange={(e) => {
+								setuserInformation({
+									...userInformation,
+									gender: e.target.value,
+								});
+							}}>
 							<option value='Select option'>Select Gender</option>
 							<option value='Male'>Male</option>
 							<option value='Female'>Female</option>
 							<option value='Others'>Others</option>
 						</select>
 						<input
-							className=' formCss'
+							className='formCss'
 							type='email'
+							name='userEmail'
 							placeholder='Enter Your Official Email'
-							// value={userInformation}
-							onChange={() => ''}
+							value={userInformation.email}
+							onChange={(e) => {
+								setuserInformation({
+									...userInformation,
+									email: e.target.value,
+								});
+								// console.log(userInformation.email);
+							}}
 						/>
 						<select
 							className=' formCss'
 							name='EducationLevel'
-							id='EducationLevel'>
+							id='EducationLevel'
+							value={userInformation.eduLevel}
+							onChange={(e) => {
+								setuserInformation({
+									...userInformation,
+									eduLevel: e.target.value,
+								});
+							}}>
 							<option value='Select option'>Highest Education Level</option>
-							<option value='Select option'>SSCE</option>
-							<option value='Select option'>OND</option>
-							<option value='Select option'>HND</option>
-							<option value='Select option'>B.Sc</option>
-							<option value='Select option'>M.Sc</option>
-							<option value='Select option'>PhD</option>
+							<option value='SSCE'>SSCE</option>
+							<option value='OND'>OND</option>
+							<option value='HND'>HND</option>
+							<option value='B.Sc'>B.Sc</option>
+							<option value='M.Sc'>M.Sc</option>
+							<option value='PhD'>PhD</option>
 						</select>
 						<div className='phoneNumb  formCss'>
 							<select
 								className='py-[10px] bg-[#6b6a8b] text-white rounded mr-2 text-center outline-none'
 								name='country code'
-								id='country'>
-								<option value='Select option'>+234</option>
-								<option value='Select option'>+1</option>
-								<option value='Select option'>+233</option>
-								<option value='Select option'>+236</option>
-								<option value='Select option'>+112</option>
-								<option value='Select option'>+321</option>
-								<option value='Select option'>+123</option>
+								id='country'
+								value={userInformation.countryCode}
+								onChange={(e) => {
+									setuserInformation({
+										...userInformation,
+										countryCode: e.target.value,
+									});
+								}}>
+								<option value='+234'>+234</option>
+								<option value='+1'>+1</option>
+								<option value='+233'>+233</option>
+								<option value='+236'>+236</option>
+								<option value='+112'>+112</option>
+								<option value='+321'>+321</option>
+								<option value='+123'>+123</option>
 							</select>
 							{/* main num */}
 							<input
 								className='w-[70%] outline-none'
-								type='tel'
-								maxLength={11}
+								type='number'
+								value={
+									userInformation.mobileNum !== undefined
+										? userInformation.mobileNum.toString()
+										: ''
+								}
 								name='phoneNum'
 								id='phoneNum'
-								placeholder='Enter Phone Number'
+								placeholder={placeholder}
+								onChange={(e) => {
+									let stringInput = userInformation.mobileNum.toString();
+									// console.log(stringInput)
+									if (stringInput.length < 11) {
+										setuserInformation({
+											...userInformation,
+											mobileNum: e.target.value,
+										});
+									} else {
+										setuserInformation({
+											...userInformation,
+											mobileNum: '',
+										});
+										setplaceholder('11 characters Max');
+									}
+								}}
 							/>
 						</div>
 						<input
 							className=' p-[16px] border-2 border-dotted border-[var(--primary)]  md:w-[93.5%] w-full outline-[#6D69FA]'
 							placeholder='Enter Your Home Address'
+							type='text'
+							value={userInformation.addr}
+							onChange={(e) => {
+								setuserInformation({
+									...userInformation,
+									addr: e.target.value,
+								});
+							}}
 						/>
 						<button
 							className='bg-[var(--primary)] md:w-[30%] w-full py-[12px] rounded text-white mt-[16px] flex items-center justify-center gap-2'
@@ -152,6 +212,7 @@ const Home: React.FC<Props> = ({
 								e.preventDefault();
 								setfirstshowing(!firstshowing); //set first to false
 								setsecondshowing(!secondshowing); //set second to true
+								setuserInformation({ ...userInformation, username: 'john' });
 							}}>
 							Proceed To Education
 						</button>
@@ -203,9 +264,19 @@ const Home: React.FC<Props> = ({
 						<input
 							className=' formCss'
 							type='text'
+							name='CertificateHeld'
 							placeholder='Certificate Held'
-							// value={userInformation}
-							onChange={() => ''}
+							value={userInformation.secondarySchool.CertificateHeld}
+							onChange={(e) => {
+								setuserInformation((prev: userDBType) => ({
+									...prev,
+									secondarySchool: {
+										...prev.secondarySchool,
+										CertificateHeld: e.target.value.toUpperCase(),
+									},
+								}));
+								// console.log(userInformation.email);
+							}}
 						/>
 						<select
 							className=' formCss'
@@ -228,7 +299,13 @@ const Home: React.FC<Props> = ({
 							id='endYear'>
 							<option value='Select option'>Select End Year </option>
 							{years.map((year) => {
-								return <option value='Male'>{year}</option>;
+								return (
+									<option
+										key={year}
+										value='Male'>
+										{year}
+									</option>
+								);
 							})}
 						</select>
 						<div className='btns flex items-center flex-wrap  md:flex-row flex-col-reverse w-full md:gap-2'>
@@ -307,7 +384,13 @@ const Home: React.FC<Props> = ({
 							id='startYear'>
 							<option value='Select option'>Select Start Year </option>
 							{years.map((year) => {
-								return <option value='Male'>{year}</option>;
+								return (
+									<option
+										key={year}
+										value='Male'>
+										{year}
+									</option>
+								);
 							})}
 						</select>
 						<select
@@ -316,7 +399,13 @@ const Home: React.FC<Props> = ({
 							id='endYear'>
 							<option value='Select option'>Select End Year </option>
 							{years.map((year) => {
-								return <option value='Male'>{year}</option>;
+								return (
+									<option
+										key={year}
+										value='Male'>
+										{year}
+									</option>
+								);
 							})}
 						</select>
 						<div className='btns flex items-center flex-wrap  md:flex-row flex-col-reverse w-full md:gap-2'>

@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { userDB, userDBType } from '../data/userDB';
 import Login from '@/pages/Register';
 import { UserInfo } from '../type/UserInfo';
@@ -16,9 +16,13 @@ const page = () => {
 	useEffect(() => {
 		const storedValue = localStorage.getItem('userInformation');
 		const state = localStorage.getItem('infoState');
-		if (storedValue && state) {
+		const userInfoDB = localStorage.getItem('usersDB');
+		// console.log(typeof userInfoDB);
+
+		if (storedValue && state && userInfoDB) {
 			setuserinfo(JSON.parse(storedValue));
 			setisValid(JSON.parse(state));
+			setuserInformation(JSON.parse(userInfoDB));
 		}
 	}, []);
 
