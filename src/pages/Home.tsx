@@ -258,8 +258,16 @@ const Home: React.FC<Props> = ({
 							className=' formCss'
 							type='text'
 							placeholder='Secondary School Name'
-							// value={userInformation}
-							onChange={() => ''}
+							value={userInformation.secondarySchool.name}
+							onChange={(e) => {
+								setuserInformation((prev: userDBType) => ({
+									...prev,
+									secondarySchool: {
+										...prev.secondarySchool,
+										name: e.target.value,
+									},
+								}));
+							}}
 						/>
 						<input
 							className=' formCss'
@@ -281,13 +289,23 @@ const Home: React.FC<Props> = ({
 						<select
 							className=' formCss'
 							name='startYear'
-							id='startYear'>
+							id='startYear'
+							value={userInformation.secondarySchool.startDate}
+							onChange={(e) => {
+								setuserInformation((prev: userDBType) => ({
+									...prev,
+									secondarySchool: {
+										...prev.secondarySchool,
+										startDate: e.target.value,
+									},
+								}));
+							}}>
 							<option value='Select option'>Select Start Year </option>
 							{years.map((year) => {
 								return (
 									<option
 										key={year}
-										value='Male'>
+										value={year}>
 										{year}
 									</option>
 								);
@@ -296,13 +314,23 @@ const Home: React.FC<Props> = ({
 						<select
 							className=' formCss'
 							name='endYear'
-							id='endYear'>
+							id='endYear'
+							value={userInformation.secondarySchool.endDate}
+							onChange={(e) => {
+								setuserInformation((prev: userDBType) => ({
+									...prev,
+									secondarySchool: {
+										...prev.secondarySchool,
+										endDate: e.target.value,
+									},
+								}));
+							}}>
 							<option value='Select option'>Select End Year </option>
 							{years.map((year) => {
 								return (
 									<option
 										key={year}
-										value='Male'>
+										value={year}>
 										{year}
 									</option>
 								);
@@ -368,26 +396,50 @@ const Home: React.FC<Props> = ({
 							className=' formCss'
 							type='text'
 							placeholder='Higher Institution Name'
-							// value={userInformation}
-							onChange={() => ''}
+							value={userInformation.higherInstitution.name}
+							onChange={(e) => {
+								setuserInformation((prev: userDBType) => ({
+									...prev,
+									higherInstitution: {
+										...prev.higherInstitution,
+										name: e.target.value,
+									},
+								}));
+							}}
 						/>
 						<input
 							className=' formCss'
 							type='text'
 							placeholder='Certificate Held'
-							// value={userInformation}
-							onChange={() => ''}
+							onChange={(e) => {
+								setuserInformation((prev: userDBType) => ({
+									...prev,
+									higherInstitution: {
+										...prev.higherInstitution,
+										CertificateHeld: e.target.value,
+									},
+								}));
+							}}
 						/>
 						<select
 							className=' formCss'
 							name='startYear'
-							id='startYear'>
+							id='startYear'
+							onChange={(e) => {
+								setuserInformation((prev: userDBType) => ({
+									...prev,
+									higherInstitution: {
+										...prev.higherInstitution,
+										startDate: e.target.value,
+									},
+								}));
+							}}>
 							<option value='Select option'>Select Start Year </option>
 							{years.map((year) => {
 								return (
 									<option
 										key={year}
-										value='Male'>
+										value={year}>
 										{year}
 									</option>
 								);
@@ -396,13 +448,22 @@ const Home: React.FC<Props> = ({
 						<select
 							className=' formCss'
 							name='endYear'
-							id='endYear'>
+							id='endYear'
+							onChange={(e) => {
+								setuserInformation((prev: userDBType) => ({
+									...prev,
+									higherInstitution: {
+										...prev.higherInstitution,
+										endDate: e.target.value,
+									},
+								}));
+							}}>
 							<option value='Select option'>Select End Year </option>
 							{years.map((year) => {
 								return (
 									<option
 										key={year}
-										value='Male'>
+										value={year}>
 										{year}
 									</option>
 								);
@@ -471,8 +532,10 @@ const Home: React.FC<Props> = ({
 							className=' formCss'
 							type='text'
 							placeholder='Your Role'
-							// value={userInformation}
-							onChange={() => ''}
+							// value={userInformation.role[0].roles}
+							// onChange={(e) => {
+							// 	setuserInformation((prev: userDBType) => console.log());
+							// }}
 						/>
 						<input
 							className=' formCss'
