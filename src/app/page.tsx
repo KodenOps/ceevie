@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { userDB, userDBType } from '../data/userDB';
 import Login from '@/pages/Register';
 import { UserInfo } from '../type/UserInfo';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 const page = () => {
 	// type SetUserInfoType = (userInfo: UserInfo) => void;
 
