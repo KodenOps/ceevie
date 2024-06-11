@@ -323,32 +323,32 @@ const Home: React.FC<Props> = ({
 						</div>
 						<div className='md:w-[48%] w-full flex flex-col'>
 							<label htmlFor='endYear'>End Year</label>
-						<select
-							className=' formCss'
-							name='endYear'
-							id='endYear'
-							value={userInformation.secondarySchool.sendDate}
-							onChange={(e) => {
-								setuserInformation((prev: userDBType) => ({
-									...prev,
-									secondarySchool: {
-										...prev.secondarySchool,
-										sendDate: e.target.value,
-									},
-								}));
-							}}>
-							<option value='Select option'>Select End Year </option>
-							{years.map((year) => {
-								return (
-									<option
-										key={year}
-										value={year}>
-										{year}
-									</option>
-								);
-							})}
+							<select
+								className=' formCss'
+								name='endYear'
+								id='endYear'
+								value={userInformation.secondarySchool.sendDate}
+								onChange={(e) => {
+									setuserInformation((prev: userDBType) => ({
+										...prev,
+										secondarySchool: {
+											...prev.secondarySchool,
+											sendDate: e.target.value,
+										},
+									}));
+								}}>
+								<option value='Select one option'>Select End Year </option>
+								{years.map((year) => {
+									return (
+										<option
+											key={year}
+											value={year}>
+											{year}
+										</option>
+									);
+								})}
 							</select>
-							</div>
+						</div>
 						<div className='btns flex items-center flex-wrap  md:flex-row flex-col-reverse w-full md:gap-2'>
 							{/* end of inputs */}
 							<button
