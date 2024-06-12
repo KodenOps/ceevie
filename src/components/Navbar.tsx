@@ -55,9 +55,22 @@ const Navbar: React.FC<Props> = ({
 					<li className='navLinks hover:font-medium'>Home</li>
 					<li className='navLinks hover:font-medium'>About</li>
 					<li className='navLinks hover:font-medium'>Supports</li>
-					<li className='navLinks w-[150px] border-2 border-solid border-[var(--primary)] text-[var(--primary)] rounded'>
-						Login
-					</li>
+					{!isValid ? (
+						<li className='navLinks w-[150px] border-2 border-solid border-[var(--primary)] text-[var(--primary)] rounded'>
+							Login
+						</li>
+					) : (
+							// the logout btn on web
+						<li
+							className='navLinks w-[150px] border-2 border-solid border-red-400 text-red-400 rounded'
+							onClick={() => {
+								setisValid(!isValid);
+								setUserInfo({});
+								localStorage.clear();
+							}}>
+							Logout
+						</li>
+					)}
 				</ul>
 				<div
 					className='burgerIcon md:hidden block'

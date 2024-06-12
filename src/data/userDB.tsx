@@ -46,7 +46,7 @@ export const userDB: userDBType = {
 	firstname: '',
 	lastname: '',
 	gender: '',
-	email: 'kjjk',
+	email: '',
 	eduLevel: '',
 	countryCode: '+234',
 	mobileNum: 4,

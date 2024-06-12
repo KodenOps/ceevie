@@ -59,8 +59,12 @@ input[type='number'] {
 	@apply px-[16px] py-[10px] border-2 border-dotted border-[var(--primary)]  w-full outline-[#6D69FA];
 }
 select {
-	@apply bg-none
+	@apply bg-none;
 }
 label {
-	@apply text-[16px] font-normal text-[var(--primary)] mb-1
+	@apply text-[16px] font-normal text-[var(--primary)] mb-1;
+}
+.disabled {
+	opacity: 0.3;
+	pointer-events: none; /* This disables pointer events on the button */
 }

@@ -6,6 +6,7 @@ import { FaBook, FaRegSmileBeam, FaUserGraduate } from 'react-icons/fa';
 import { secondarySchool, userDBType } from '@/data/userDB';
 import { MdOutlineHdrPlus, MdPlusOne, MdWorkOutline } from 'react-icons/md';
 import { CiCirclePlus } from 'react-icons/ci';
+import { IoMdTrash } from 'react-icons/io';
 
 const years: number[] = [
 	2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012,
@@ -95,117 +96,132 @@ const Home: React.FC<Props> = ({
 						className='flex w-full flex-wrap md:mt-[100px] mt-[32px] gap-10'
 						onSubmit={(e) => e.preventDefault()}>
 						{/* gender */}
-						<select
-							value={userInformation.gender}
-							className=' formCss'
-							name='gender'
-							id='gender'
-							onChange={(e) => {
-								setuserInformation({
-									...userInformation,
-									gender: e.target.value,
-								});
-							}}>
-							<option value='Select option'>Select Gender</option>
-							<option value='Male'>Male</option>
-							<option value='Female'>Female</option>
-							<option value='Others'>Others</option>
-						</select>
-						<input
-							className='formCss'
-							type='email'
-							name='userEmail'
-							placeholder='Enter Your Official Email'
-							value={userInformation.email}
-							onChange={(e) => {
-								setuserInformation({
-									...userInformation,
-									email: e.target.value,
-								});
-								// console.log(userInformation.email);
-							}}
-						/>
-						<select
-							className=' formCss'
-							name='EducationLevel'
-							id='EducationLevel'
-							value={userInformation.eduLevel}
-							onChange={(e) => {
-								setuserInformation({
-									...userInformation,
-									eduLevel: e.target.value,
-								});
-							}}>
-							<option value='Select option'>Highest Education Level</option>
-							<option value='SSCE'>SSCE</option>
-							<option value='OND'>OND</option>
-							<option value='HND'>HND</option>
-							<option value='B.Sc'>B.Sc</option>
-							<option value='M.Sc'>M.Sc</option>
-							<option value='PhD'>PhD</option>
-						</select>
-						<div className='phoneNumb  formCss'>
+						<div className='md:w-[48%] w-full flex flex-col'>
+							<label htmlFor='gender'>Your Gender</label>
 							<select
-								className='py-[10px] bg-[#6b6a8b] text-white rounded mr-2 text-center outline-none'
-								name='country code'
-								id='country'
-								value={userInformation.countryCode}
+								value={userInformation.gender}
+								className=' formCss'
+								name='gender'
+								id='gender'
 								onChange={(e) => {
 									setuserInformation({
 										...userInformation,
-										countryCode: e.target.value,
+										gender: e.target.value,
 									});
 								}}>
-								<option value='+234'>+234</option>
-								<option value='+1'>+1</option>
-								<option value='+233'>+233</option>
-								<option value='+236'>+236</option>
-								<option value='+112'>+112</option>
-								<option value='+321'>+321</option>
-								<option value='+123'>+123</option>
+								<option value='Select option'>Select Gender</option>
+								<option value='Male'>Male</option>
+								<option value='Female'>Female</option>
+								<option value='Others'>Others</option>
 							</select>
-							{/* main num */}
+						</div>
+						<div className='md:w-[48%] w-full flex flex-col'>
+							<label htmlFor='userEmail'>Your Official Email</label>
 							<input
-								className='w-[70%] outline-none'
-								type='number'
-								value={
-									userInformation.mobileNum !== undefined
-										? userInformation.mobileNum.toString()
-										: ''
-								}
-								name='phoneNum'
-								id='phoneNum'
-								placeholder={placeholder}
+								className='formCss'
+								type='email'
+								name='userEmail'
+								placeholder='Enter Your Official Email'
+								value={userInformation.email}
 								onChange={(e) => {
-									let stringInput = userInformation.mobileNum.toString();
-									// console.log(stringInput)
-									if (stringInput.length < 11) {
-										setuserInformation({
-											...userInformation,
-											mobileNum: e.target.value,
-										});
-									} else {
-										setuserInformation({
-											...userInformation,
-											mobileNum: '',
-										});
-										setplaceholder('11 characters Max');
-									}
+									setuserInformation({
+										...userInformation,
+										email: e.target.value,
+									});
+									// console.log(userInformation.email);
 								}}
 							/>
 						</div>
-						<input
-							className=' p-[16px] border-2 border-dotted border-[var(--primary)]  md:w-[93.5%] w-full outline-[#6D69FA]'
-							placeholder='Enter Your Home Address'
-							type='text'
-							value={userInformation.addr}
-							onChange={(e) => {
-								setuserInformation({
-									...userInformation,
-									addr: e.target.value,
-								});
-							}}
-						/>
+						<div className='md:w-[48%] w-full flex flex-col'>
+							<label htmlFor='EducationLevel'>Highest Level Of Education</label>
+							<select
+								className=' formCss'
+								name='EducationLevel'
+								id='EducationLevel'
+								value={userInformation.eduLevel}
+								onChange={(e) => {
+									setuserInformation({
+										...userInformation,
+										eduLevel: e.target.value,
+									});
+								}}>
+								<option value='Select option'>Select an Option</option>
+								<option value='SSCE'>SSCE</option>
+								<option value='OND'>OND</option>
+								<option value='HND'>HND</option>
+								<option value='B.Sc'>B.Sc</option>
+								<option value='M.Sc'>M.Sc</option>
+								<option value='PhD'>PhD</option>
+							</select>
+						</div>
+						<div className='md:w-[48%] w-full flex flex-col'>
+							<label htmlFor='phoneNum'>Mobile Number</label>
+							<div className='phoneNumb  formCss'>
+								<select
+									className='h-full bg-[#6b6a8b] text-white rounded mr-2 text-center outline-none'
+									name='country code'
+									id='country'
+									value={userInformation.countryCode}
+									onChange={(e) => {
+										setuserInformation({
+											...userInformation,
+											countryCode: e.target.value,
+										});
+									}}>
+									<option value='+234'>+234</option>
+									<option value='+1'>+1</option>
+									<option value='+233'>+233</option>
+									<option value='+236'>+236</option>
+									<option value='+112'>+112</option>
+									<option value='+321'>+321</option>
+									<option value='+123'>+123</option>
+								</select>
+								{/* main num */}
+								<input
+									className='w-[70%] outline-none'
+									type='number'
+									value={
+										userInformation.mobileNum !== undefined
+											? userInformation.mobileNum.toString()
+											: ''
+									}
+									name='phoneNum'
+									id='phoneNum'
+									placeholder={placeholder}
+									onChange={(e) => {
+										let stringInput = userInformation.mobileNum.toString();
+										// console.log(stringInput)
+										if (stringInput.length < 11) {
+											setuserInformation({
+												...userInformation,
+												mobileNum: e.target.value,
+											});
+										} else {
+											setuserInformation({
+												...userInformation,
+												mobileNum: '',
+											});
+											setplaceholder('11 characters Max');
+										}
+									}}
+								/>
+							</div>
+						</div>
+						<div className='md:w-[48%] w-full flex flex-col'>
+							<label htmlFor='phoneNum'>Your Home Address</label>
+							<input
+								className=' p-[16px] border-2 border-dotted border-[var(--primary)]  md:w-[93.5%] w-full outline-[#6D69FA]'
+								placeholder='Enter Your Home Address'
+								type='text'
+								value={userInformation.addr}
+								onChange={(e) => {
+									setuserInformation({
+										...userInformation,
+										addr: e.target.value,
+									});
+								}}
+							/>
+						</div>
 						<button
 							className='bg-[var(--primary)] md:w-[30%] w-full py-[12px] rounded text-white mt-[16px] flex items-center justify-center gap-2'
 							onClick={(e) => {
@@ -405,86 +421,100 @@ const Home: React.FC<Props> = ({
 						onSubmit={(e) => {
 							e.preventDefault();
 						}}>
-						<input
-							className=' formCss'
-							type='text'
-							placeholder='Higher Institution Name'
-							value={userInformation.higherInstitution.name}
-							onChange={(e) => {
-								setuserInformation((prev: userDBType) => ({
-									...prev,
-									higherInstitution: {
-										...prev.higherInstitution,
-										name: e.target.value,
-									},
-								}));
-							}}
-						/>
-						<input
-							className=' formCss'
-							type='text'
-							placeholder='Certificate Held'
-							value={userInformation.higherInstitution.Certificate_Held}
-							onChange={(e) => {
-								setuserInformation((prev: userDBType) => ({
-									...prev,
-									higherInstitution: {
-										...prev.higherInstitution,
-										Certificate_Held: e.target.value,
-									},
-								}));
-							}}
-						/>
-						<select
-							className=' formCss'
-							name='startYear'
-							id='startYear'
-							value={userInformation.higherInstitution.hstartDate}
-							onChange={(e) => {
-								setuserInformation((prev: userDBType) => ({
-									...prev,
-									higherInstitution: {
-										...prev.higherInstitution,
-										hstartDate: e.target.value,
-									},
-								}));
-							}}>
-							<option value='Select option'>Select Start Year </option>
-							{years.map((year) => {
-								return (
-									<option
-										key={year}
-										value={year}>
-										{year}
-									</option>
-								);
-							})}
-						</select>
-						<select
-							className=' formCss'
-							name='endYear'
-							id='endYear'
-							value={userInformation.higherInstitution.hendDate}
-							onChange={(e) => {
-								setuserInformation((prev: userDBType) => ({
-									...prev,
-									higherInstitution: {
-										...prev.higherInstitution,
-										hendDate: e.target.value,
-									},
-								}));
-							}}>
-							<option value='Select option'>Select End Year </option>
-							{years.map((year) => {
-								return (
-									<option
-										key={year}
-										value={year}>
-										{year}
-									</option>
-								);
-							})}
-						</select>
+						<div className='md:w-[48%] w-full flex flex-col'>
+							<label htmlFor='phoneNum'>Institution Name</label>
+							<input
+								className=' formCss'
+								type='text'
+								name='higherEduName'
+								placeholder='Higher Institution Name'
+								value={userInformation.higherInstitution.name}
+								onChange={(e) => {
+									setuserInformation((prev: userDBType) => ({
+										...prev,
+										higherInstitution: {
+											...prev.higherInstitution,
+											name: e.target.value,
+										},
+									}));
+								}}
+							/>
+						</div>
+						<div className='md:w-[48%] w-full flex flex-col'>
+							<label htmlFor='phoneNum'>Degree Name</label>
+							<input
+								className=' formCss'
+								type='text'
+								placeholder='Certificate Held'
+								name='higherCert'
+								value={userInformation.higherInstitution.Certificate_Held}
+								onChange={(e) => {
+									setuserInformation((prev: userDBType) => ({
+										...prev,
+										higherInstitution: {
+											...prev.higherInstitution,
+											Certificate_Held: e.target.value,
+										},
+									}));
+								}}
+							/>
+						</div>
+						<div className='md:w-[48%] w-full flex flex-col'>
+							<label htmlFor='startYear'>Start Year</label>
+							<select
+								className=' formCss'
+								name='startYear'
+								id='startYear'
+								value={userInformation.higherInstitution.hstartDate}
+								onChange={(e) => {
+									setuserInformation((prev: userDBType) => ({
+										...prev,
+										higherInstitution: {
+											...prev.higherInstitution,
+											hstartDate: e.target.value,
+										},
+									}));
+								}}>
+								<option value='Select option'>Select Start Year </option>
+								{years.map((year) => {
+									return (
+										<option
+											key={year}
+											value={year}>
+											{year}
+										</option>
+									);
+								})}
+							</select>
+						</div>
+						<div className='md:w-[48%] w-full flex flex-col'>
+							<label htmlFor='endYear'>End Year</label>
+							<select
+								className=' formCss'
+								name='endYear'
+								id='endYear'
+								value={userInformation.higherInstitution.hendDate}
+								onChange={(e) => {
+									setuserInformation((prev: userDBType) => ({
+										...prev,
+										higherInstitution: {
+											...prev.higherInstitution,
+											hendDate: e.target.value,
+										},
+									}));
+								}}>
+								<option value='Select option'>Select End Year </option>
+								{years.map((year) => {
+									return (
+										<option
+											key={year}
+											value={year}>
+											{year}
+										</option>
+									);
+								})}
+							</select>
+						</div>
 						<div className='btns flex items-center flex-wrap  md:flex-row flex-col-reverse w-full md:gap-2'>
 							{/* end of inputs */}
 							<button
@@ -639,19 +669,88 @@ const Home: React.FC<Props> = ({
 							</select>
 						</div>
 
-						<div className='md:w-[48%] w-full flex flex-col'>
-							<label htmlFor='achievement'>Achievement 1</label>
-							<input
-								className=' formCss'
-								name='achievement'
-								type='text'
-								placeholder='Achievement - one bullet point (Optional)'
-								// value={userInformation}
-								onChange={() => ''}
-							/>
-						</div>
+						{userInformation.userRole[0].achievementList.map(
+							(e, achievementIndex) => {
+								console.log(
+									userInformation.userRole[0].achievementList.indexOf(e),
+									e
+								);
+								return (
+									<div
+										className='md:w-[48%] w-full flex flex-col'
+										key={achievementIndex}>
+										<label htmlFor='achievement'>
+											Achievement {achievementIndex + 1}
+										</label>
+										<input
+											className=' formCss'
+											name='achievement'
+											type='text'
+											placeholder='Achievement - one bullet point (Optional)'
+											value={
+												userInformation.userRole[0].achievementList[
+													achievementIndex
+												] || ''
+											}
+											onChange={(e) => {
+												const newValue = e.target.value;
+												setuserInformation((prev: userDBType) => ({
+													...prev,
+													userRole: prev.userRole.map((role, index) => ({
+														...role,
+														achievementList:
+															index === 0
+																? role.achievementList.map((item, j) =>
+																		achievementIndex === j ? newValue : item
+																  )
+																: role.achievementList,
+													})),
+												}));
+											}}
+										/>
+										<span
+											className='text-red-400 flex items-center mt-2'
+											onClick={() => {
+												setuserInformation((prev: userDBType) => ({
+													...prev,
+													userRole: prev.userRole.map((role, index) => ({
+														...role,
+														achievementList:
+															index === 0
+																? role.achievementList.filter(
+																		(item, j) => j !== achievementIndex
+																  )
+																: role.achievementList,
+													})),
+												}));
+											}}>
+											{' '}
+											<IoMdTrash size={20} /> Remove
+										</span>
+									</div>
+								);
+							}
+						)}
 
-						<div className='addMore flex items-center justify-start gap-4'>
+						<div
+							className={`addMore flex items-center justify-start gap-4 ${
+								userInformation.userRole[0].achievementList.slice(-1)[0] === ''
+									? 'disabled'
+									: ''
+							}`}
+							onClick={() => {
+								const lastAchievement =
+									userInformation.userRole[0].achievementList.slice(-1)[0];
+								if (lastAchievement !== '') {
+									setuserInformation((prev: userDBType) => ({
+										...prev,
+										userRole: prev.userRole.map((role) => ({
+											...role,
+											achievementList: [...role.achievementList, ''], // Add an empty string for a new achievement
+										})),
+									}));
+								}
+							}}>
 							<span className='w-[50px] h-[50px] flex justify-center items-center border-2 bg-[#BBDAFF] rounded-full'>
 								<CiCirclePlus size={30} />
 							</span>
@@ -665,7 +764,7 @@ const Home: React.FC<Props> = ({
 								className=' text-[var(--primary)]   md:w-[20%] w-full py-[12px] rounded font-medium mt-[16px] flex items-center justify-center gap-2'
 								onClick={(e) => {
 									e.preventDefault();
-									setsecondshowing(!secondshowing); //set second to true
+									setfourthshowing(!fourthshowing); //set fourth to true
 									setthirdshowing(!thirdshowing); //set third to false
 								}}>
 								Go Back To Higher Institution
@@ -679,7 +778,13 @@ const Home: React.FC<Props> = ({
 								}}>
 								Add More Experience
 							</button>
-							<button className='bg-[var(--primary)] md:w-[20%] w-full py-[12px] rounded text-white mt-[16px] flex items-center justify-center gap-2'>
+							<button
+								className='bg-[var(--primary)] md:w-[20%] w-full py-[12px] rounded text-white mt-[16px] flex items-center justify-center gap-2'
+								onClick={(e) => {
+									e.preventDefault();
+									// setsecondshowing(!secondshowing); //set second to true
+									// setthirdshowing(!thirdshowing); //set third to false
+								}}>
 								Proceed To Experience
 							</button>
 						</div>
