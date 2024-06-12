@@ -552,7 +552,7 @@ const Home: React.FC<Props> = ({
 					setisValid={setisValid}
 					setUserInfo={setUserInfo}
 				/>
-				<div className='loginWrapper md:w-[70vw] w-full lg:h-[80vh] md:h-[75vh] md:border-[2px] border-[#e8e8e8] md:mx-[15%]   rounded-lg flex flex-col items-start overflow-hidden z-50 md:bg-white px-[24px] pt-[4px] pb-[24px]'>
+				<div className='loginWrapper md:w-[70vw] w-full lg:h-[80vh] md:h-[75vh] md:border-[2px] border-[#e8e8e8] md:mx-[15%]   rounded-lg flex flex-col items-start overflow-x-hidden z-50 md:bg-white px-[24px] pt-[4px] pb-[24px]'>
 					<div className='greetUser flex items-center gap-[16px] justify-start w-full border-b-2 pb-[20px] md:pt-[20px] '>
 						<span className='w-[35px] h-[35px] bg-[#6D69FA] rounded flex justify-center items-center text-white'>
 							<MdWorkOutline size={20} />
@@ -570,7 +570,7 @@ const Home: React.FC<Props> = ({
 
 					<form
 						action='/'
-						className='flex w-full flex-wrap md:mt-[100px] mt-[32px] gap-10'
+						className='flex w-full flex-wrap md:mt-[50px] mt-[32px] gap-10'
 						onSubmit={(e) => {
 							e.preventDefault();
 						}}>
@@ -761,7 +761,7 @@ const Home: React.FC<Props> = ({
 						{/* end of inputs */}
 						<div className='btns flex items-center flex-wrap  md:flex-row flex-col-reverse w-full md:gap-2'>
 							<button
-								className=' text-[var(--primary)]   md:w-[20%] w-full py-[12px] rounded font-medium mt-[16px] flex items-center justify-center gap-2'
+								className=' text-[var(--primary)]   md:w-auto w-full py-[12px] rounded font-medium mt-[16px] flex items-center justify-center gap-2'
 								onClick={(e) => {
 									e.preventDefault();
 									setfourthshowing(!fourthshowing); //set fourth to true
