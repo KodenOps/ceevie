@@ -15,6 +15,7 @@ const page = () => {
 	const [secondshowing, setsecondshowing] = useState(false);
 	const [thirdshowing, setthirdshowing] = useState(false);
 	const [fourthshowing, setfourthshowing] = useState(false);
+	const [fifthshowing, setfifthshowing] = useState(false);
 	useEffect(() => {
 		const storedValue = localStorage.getItem('userInformation');
 		const state = localStorage.getItem('infoState');
@@ -41,6 +42,8 @@ const page = () => {
 				secondshowing={secondshowing}
 				thirdshowing={thirdshowing}
 				fourthshowing={fourthshowing}
+				fifthshowing={fifthshowing}
+				setfifthshowing={setfifthshowing}
 				setfirstshowing={setfirstshowing}
 				setsecondshowing={setsecondshowing}
 				setthirdshowing={setthirdshowing}

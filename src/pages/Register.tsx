@@ -22,6 +22,8 @@ interface LoginProps {
 	thirdshowing: boolean;
 	fourthshowing: boolean;
 	setfirstshowing: Function;
+	fifthshowing: boolean;
+	setfifthshowing: Function;
 	setsecondshowing: Function;
 	setthirdshowing: Function;
 	setfourthshowing: Function;
@@ -41,6 +43,8 @@ const Register: React.FC<LoginProps> = ({
 	setsecondshowing,
 	setthirdshowing,
 	setfourthshowing,
+	fifthshowing,
+	setfifthshowing,
 }) => {
 	useEffect(() => {
 		const storedValue = localStorage.getItem('userInformation');
@@ -274,6 +278,8 @@ const Register: React.FC<LoginProps> = ({
 				setsecondshowing={setsecondshowing}
 				setthirdshowing={setthirdshowing}
 				setfourthshowing={setfourthshowing}
+				fifthshowing={fifthshowing}
+				setfifthshowing={setfifthshowing}
 			/>
 		);
 	}

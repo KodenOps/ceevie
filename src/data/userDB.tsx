@@ -21,6 +21,7 @@ export interface secondarySchool {
 	sstartDate: string;
 	sendDate: string;
 }
+
 export interface userDBType {
 	username: string;
 	password: string;
@@ -30,6 +31,7 @@ export interface userDBType {
 	email: string;
 	eduLevel: string;
 	countryCode: string;
+	certAvailable: string;
 	mobileNum: Number;
 	addr: string;
 	secondarySchool: secondarySchool;
@@ -51,6 +53,7 @@ export const userDB: userDBType = {
 	countryCode: '+234',
 	mobileNum: 4,
 	addr: '',
+	certAvailable: '',
 	secondarySchool: {
 		name: '',
 		CertificateHeld: '',
