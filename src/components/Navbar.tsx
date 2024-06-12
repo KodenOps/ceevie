@@ -60,7 +60,7 @@ const Navbar: React.FC<Props> = ({
 							Login
 						</li>
 					) : (
-							// the logout btn on web
+						// the logout btn on web
 						<li
 							className='navLinks w-[150px] border-2 border-solid border-red-400 text-red-400 rounded'
 							onClick={() => {
@@ -145,14 +145,7 @@ const Navbar: React.FC<Props> = ({
 									Logout
 								</button>
 							) : (
-								<div>
-									<button className='w-full py-[12px] bg-[var(--primary)] mb-[10px] outline-none border-2 rounded text-white'>
-										Login
-									</button>
-									<button className='w-full py-[12px] border-[var(--primary)] mb-[10px] outline-none border-2 rounded text-[var(--primary)]'>
-										Register
-									</button>
-								</div>
+								''
 							)}
 						</div>
 					</div>

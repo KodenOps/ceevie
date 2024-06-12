@@ -93,7 +93,7 @@ const Home: React.FC<Props> = ({
 
 					<form
 						action='/'
-						className='flex w-full flex-wrap md:mt-[50px] mt-[32px] gap-10'
+						className='flex w-full flex-wrap md:mt-[50px] mt-[32px] gap-10 '
 						onSubmit={(e) => e.preventDefault()}>
 						{/* gender */}
 						<div className='md:w-[48%] w-full flex flex-col'>
@@ -567,236 +567,290 @@ const Home: React.FC<Props> = ({
 						</div>
 					</div>
 					{/* the main form */}
-
-					<form
-						action='/'
-						className='flex w-full flex-wrap md:mt-[50px] mt-[32px] gap-10'
-						onSubmit={(e) => {
-							e.preventDefault();
-						}}>
-						<div className='md:w-[48%] w-full flex flex-col'>
-							<label htmlFor='user Role'>Job Title</label>
-							<input
-								className=' formCss'
-								name='user Role'
-								type='text'
-								value={userInformation.userRole[0].roles}
-								placeholder='Job Title'
-								onChange={(e) => {
-									setuserInformation((prev: userDBType) => ({
-										...prev,
-										userRole: prev.userRole.map((role, index) =>
-											index === 0 ? { ...role, roles: e.target.value } : role
-										),
-									}));
-								}}
-							/>
-						</div>
-						<div className='md:w-[48%] w-full flex flex-col'>
-							<label htmlFor='Organization'>Organization Name</label>
-							<input
-								className=' formCss'
-								type='text'
-								name='Organization'
-								placeholder='Organization Name'
-								value={userInformation.userRole[0].organization}
-								onChange={(e) => {
-									setuserInformation((prev: userDBType) => ({
-										...prev,
-										userRole: prev.userRole.map((role, index) =>
-											index === 0
-												? { ...role, organization: e.target.value }
-												: role
-										),
-									}));
-								}}
-							/>
-						</div>
-						<div className='md:w-[48%] w-full flex flex-col'>
-							<label htmlFor='startYear'>Start Year</label>
-							<select
-								className=' formCss'
-								name='startYear'
-								id='startYear'
-								value={userInformation.userRole[0].rstartDate}
-								onChange={(e) => {
-									setuserInformation((prev: userDBType) => ({
-										...prev,
-										userRole: prev.userRole.map((role, index) =>
-											index === 0
-												? { ...role, rstartDate: e.target.value }
-												: role
-										),
-									}));
-								}}>
-								<option value='Select option'>Select Start Year </option>
-								{years.map((year) => {
-									return (
-										<option
-											key={year}
-											value={year}>
-											{year}
-										</option>
-									);
-								})}
-							</select>
-						</div>
-						<div className='md:w-[48%] w-full flex flex-col'>
-							<label htmlFor='endYear'>End Year</label>
-							<select
-								className=' formCss'
-								name='endYear'
-								id='endYear'
-								value={userInformation.userRole[0].rendDate}
-								onChange={(e) => {
-									setuserInformation((prev: userDBType) => ({
-										...prev,
-										userRole: prev.userRole.map((role, index) =>
-											index === 0 ? { ...role, rendDate: e.target.value } : role
-										),
-									}));
-								}}>
-								<option value='Select option'>Select End Year </option>
-								{years.map((year) => {
-									return (
-										<option
-											key={year}
-											value={year}>
-											{year}
-										</option>
-									);
-								})}
-							</select>
-						</div>
-
-						{userInformation.userRole[0].achievementList.map(
-							(e, achievementIndex) => {
-								console.log(
-									userInformation.userRole[0].achievementList.indexOf(e),
-									e
-								);
-								return (
-									<div
-										className='md:w-[48%] w-full flex flex-col'
-										key={achievementIndex}>
-										<label htmlFor='achievement'>
-											Achievement {achievementIndex + 1}
+					{userInformation.userRole.map((role, roleIndex) => {
+						return (
+							<div
+								key={roleIndex}
+								className='border-b-2 border-red-300 pb-[32px] md:mb-[0px] mb-[16px] border-dotted w-full'>
+								<h2 className='text-center w-full md:text-xl text-md font-semibold text-[var(--primary)] mt-4 flex items-center justify-between gap-2'>
+									Experience {roleIndex + 1}{' '}
+									<span
+										className='flex items-center justify-start gap-2 text-red-400 cursor-pointer'
+										onClick={() => {
+											if (userInformation.userRole.length > 1) {
+												setuserInformation((prev: userDBType) => ({
+													...prev,
+													userRole: prev.userRole.filter(
+														(_, index) => index !== roleIndex
+													),
+												}));
+											} else {
+												alert('Cannot delete the only experience');
+											}
+										}}>
+										<IoMdTrash size={20} /> Delete Experience
+									</span>
+								</h2>
+								<form className='flex w-full flex-wrap md:mt-[50px] mt-[32px] gap-10'>
+									<div className='md:w-[48%] w-full flex flex-col'>
+										<label htmlFor={`userRole-${roleIndex}-jobTitle`}>
+											Job Title
 										</label>
 										<input
-											className=' formCss'
-											name='achievement'
+											className='formCss'
+											name={`userRole-${roleIndex}-jobTitle`}
 											type='text'
-											placeholder='Achievement - one bullet point (Optional)'
-											value={
-												userInformation.userRole[0].achievementList[
-													achievementIndex
-												] || ''
-											}
+											value={role.roles}
+											placeholder='Job Title'
 											onChange={(e) => {
 												const newValue = e.target.value;
 												setuserInformation((prev: userDBType) => ({
 													...prev,
-													userRole: prev.userRole.map((role, index) => ({
-														...role,
-														achievementList:
-															index === 0
-																? role.achievementList.map((item, j) =>
-																		achievementIndex === j ? newValue : item
-																  )
-																: role.achievementList,
-													})),
+													userRole: prev.userRole.map((r, i) =>
+														i === roleIndex ? { ...r, roles: newValue } : r
+													),
 												}));
 											}}
 										/>
-										<span
-											className={`text-red-400 flex items-center mt-2 cursor-pointer ${
-												userInformation.userRole[0].achievementList.length === 1
-													? 'disabled'
-													: ''
-											}`}
-											onClick={() => {
-												if (
-													userInformation.userRole[0].achievementList.length > 1
-												) {
-													setuserInformation((prev: userDBType) => ({
-														...prev,
-														userRole: prev.userRole.map((role, index) => ({
-															...role,
-															achievementList:
-																index === 0
-																	? role.achievementList.filter(
-																			(item, j) => j !== achievementIndex
-																	  )
-																	: role.achievementList,
-														})),
-													}));
-												}
-											}}>
-											{' '}
-											<IoMdTrash size={20} /> Remove
-										</span>
 									</div>
-								);
-							}
-						)}
+									<div className='md:w-[48%] w-full flex flex-col'>
+										<label htmlFor={`userRole-${roleIndex}-organization`}>
+											Organization Name
+										</label>
+										<input
+											className='formCss'
+											type='text'
+											name={`userRole-${roleIndex}-organization`}
+											placeholder='Organization Name'
+											value={role.organization}
+											onChange={(e) => {
+												const newValue = e.target.value;
+												setuserInformation((prev: userDBType) => ({
+													...prev,
+													userRole: prev.userRole.map((r, i) =>
+														i === roleIndex
+															? { ...r, organization: newValue }
+															: r
+													),
+												}));
+											}}
+										/>
+									</div>
+									<div className='md:w-[48%] w-full flex flex-col'>
+										<label htmlFor={`userRole-${roleIndex}-startYear`}>
+											Start Year
+										</label>
+										<select
+											className='formCss'
+											name={`userRole-${roleIndex}-startYear`}
+											id={`userRole-${roleIndex}-startYear`}
+											value={role.rstartDate}
+											onChange={(e) => {
+												const newValue = e.target.value;
+												setuserInformation((prev: userDBType) => ({
+													...prev,
+													userRole: prev.userRole.map((r, i) =>
+														i === roleIndex ? { ...r, rstartDate: newValue } : r
+													),
+												}));
+											}}>
+											<option value='Select option'>Select Start Year </option>
+											{years.map((year) => {
+												return (
+													<option
+														key={year}
+														value={year}>
+														{year}
+													</option>
+												);
+											})}
+										</select>
+									</div>
+									<div className='md:w-[48%] w-full flex flex-col'>
+										<label htmlFor={`userRole-${roleIndex}-endYear`}>
+											End Year
+										</label>
+										<select
+											className='formCss'
+											name={`userRole-${roleIndex}-endYear`}
+											id={`userRole-${roleIndex}-endYear`}
+											value={role.rendDate}
+											onChange={(e) => {
+												const newValue = e.target.value;
+												setuserInformation((prev: userDBType) => ({
+													...prev,
+													userRole: prev.userRole.map((r, i) =>
+														i === roleIndex ? { ...r, rendDate: newValue } : r
+													),
+												}));
+											}}>
+											<option value='Select option'>Select End Year </option>
+											{years.map((year) => {
+												return (
+													<option
+														key={year}
+														value={year}>
+														{year}
+													</option>
+												);
+											})}
+										</select>
+									</div>
 
-						<div
-							className={`addMore flex items-center justify-start gap-4 ${
-								userInformation.userRole[0].achievementList.slice(-1)[0] === ''
-									? 'disabled'
-									: ''
-							}`}
-							onClick={() => {
-								const lastAchievement =
-									userInformation.userRole[0].achievementList.slice(-1)[0];
-								if (lastAchievement !== '') {
-									setuserInformation((prev: userDBType) => ({
-										...prev,
-										userRole: prev.userRole.map((role) => ({
-											...role,
-											achievementList: [...role.achievementList, ''], // Add an empty string for a new achievement
-										})),
-									}));
-								}
-							}}>
-							<span className='w-[50px] h-[50px] flex justify-center items-center border-2 bg-[#BBDAFF] rounded-full'>
-								<CiCirclePlus size={30} />
-							</span>
-							<button className='text-[var(--primary)] font-medium'>
-								Add More Achievement
-							</button>
-						</div>
-						{/* end of inputs */}
-						<div className='btns flex items-center flex-wrap  md:flex-row flex-col-reverse w-full md:gap-2'>
-							<button
-								className='border-[var(--primary)] text-[var(--primary)] border-2  md:w-[20%] w-full py-[12px] rounded  mt-[16px] flex items-center justify-center gap-2'
-								onClick={(e) => {
-									e.preventDefault();
-									// setsecondshowing(!secondshowing); //set second to true
-									// setthirdshowing(!thirdshowing); //set third to false
-								}}>
-								Add More Experience
-							</button>
-							<button
-								className='bg-[var(--primary)] md:w-[20%] w-full py-[12px] rounded text-white mt-[16px] flex items-center justify-center gap-2'
-								onClick={(e) => {
-									e.preventDefault();
-									// setsecondshowing(!secondshowing); //set second to true
-									// setthirdshowing(!thirdshowing); //set third to false
-								}}>
-								Proceed To Experience
-							</button>
-						</div>
+									{role.achievementList.map((achievement, achievementIndex) => {
+										return (
+											<div
+												className='md:w-[48%] w-full flex flex-col'
+												key={achievementIndex}>
+												<label
+													htmlFor={`achievement-${roleIndex}-${achievementIndex}`}>
+													Achievement {achievementIndex + 1}
+												</label>
+												<input
+													className='formCss'
+													name={`achievement-${roleIndex}-${achievementIndex}`}
+													type='text'
+													placeholder='Achievement - one bullet point (Optional)'
+													value={achievement}
+													onChange={(e) => {
+														const newValue = e.target.value;
+														setuserInformation((prev: userDBType) => ({
+															...prev,
+															userRole: prev.userRole.map((r, i) =>
+																i === roleIndex
+																	? {
+																			...r,
+																			achievementList: r.achievementList.map(
+																				(item, j) =>
+																					j === achievementIndex
+																						? newValue
+																						: item
+																			),
+																	  }
+																	: r
+															),
+														}));
+													}}
+												/>
+												<span
+													className={`text-red-400 flex items-center mt-2 cursor-pointer ${
+														role.achievementList.length === 1 ? 'disabled' : ''
+													}`}
+													onClick={() => {
+														if (role.achievementList.length > 1) {
+															setuserInformation((prev: userDBType) => ({
+																...prev,
+																userRole: prev.userRole.map((r, i) =>
+																	i === roleIndex
+																		? {
+																				...r,
+																				achievementList:
+																					r.achievementList.filter(
+																						(item, j) => j !== achievementIndex
+																					),
+																		  }
+																		: r
+																),
+															}));
+														}
+													}}>
+													<IoMdTrash size={20} /> Remove
+												</span>
+											</div>
+										);
+									})}
+
+									<div
+										className={`addMore flex items-center justify-start gap-4 ${
+											role.achievementList.slice(-1)[0] === '' ? 'disabled' : ''
+										}`}
+										onClick={() => {
+											const lastAchievement = role.achievementList.slice(-1)[0];
+											if (lastAchievement !== '') {
+												setuserInformation((prev: userDBType) => ({
+													...prev,
+													userRole: prev.userRole.map((r, i) =>
+														i === roleIndex
+															? {
+																	...r,
+																	achievementList: [...r.achievementList, ''],
+															  }
+															: r
+													),
+												}));
+											}
+										}}>
+										<span className='w-[50px] h-[50px] flex justify-center items-center border-2 bg-[#BBDAFF] rounded-full'>
+											<CiCirclePlus size={30} />
+										</span>
+										<button className='text-[var(--primary)] font-medium'>
+											Add More Achievement
+										</button>
+									</div>
+								</form>
+							</div>
+						);
+					})}
+
+					{/* end of inputs */}
+					<div className='btns flex items-center flex-wrap  md:flex-row flex-col-reverse w-full md:gap-2'>
 						<button
-							className=' text-[var(--primary)]   md:w-auto w-full py-[12px] rounded font-medium  flex items-center justify-center gap-2'
+							className='border-[var(--primary)] text-[var(--primary)] border-2  md:w-[20%] w-full py-[12px] rounded  mt-[16px] flex items-center justify-center gap-2'
 							onClick={(e) => {
 								e.preventDefault();
-								setfourthshowing(!fourthshowing); //set fourth to true
-								setthirdshowing(!thirdshowing); //set third to false
+								setuserInformation((prev: userDBType) => {
+									const lastRole = prev.userRole[prev.userRole.length - 1];
+									const allFieldsFilled =
+										lastRole.organization !== '' &&
+										lastRole.roles !== '' &&
+										lastRole.rstartDate !== '' &&
+										lastRole.rendDate !== '' &&
+										lastRole.achievementList.every(
+											(achievement) => achievement !== ''
+										);
+
+									if (!allFieldsFilled) {
+										// If not all fields are filled, return the previous state without adding a new role
+										return prev;
+									}
+
+									// If all fields are filled, add the new role
+									return {
+										...prev,
+										userRole: [
+											...prev.userRole,
+											{
+												organization: '',
+												roles: '',
+												rstartDate: '',
+												rendDate: '',
+												achievementList: [''],
+											},
+										],
+									};
+								});
 							}}>
-							Go Back To Higher Institution
+							Add More Experience
 						</button>
-					</form>
+						<button
+							className='bg-[var(--primary)] md:w-[20%] w-full py-[12px] rounded text-white mt-[16px] flex items-center justify-center gap-2'
+							onClick={(e) => {
+								e.preventDefault();
+								// setsecondshowing(!secondshowing); //set second to true
+								// setthirdshowing(!thirdshowing); //set third to false
+							}}>
+							Proceed To Experience
+						</button>
+					</div>
+					<button
+						className=' text-[var(--primary)]   md:w-auto w-full py-[12px] rounded font-medium  flex items-center justify-center gap-2'
+						onClick={(e) => {
+							e.preventDefault();
+							setfourthshowing(!fourthshowing); //set fourth to true
+							setthirdshowing(!thirdshowing); //set third to false
+						}}>
+						Go Back To Higher Institution
+					</button>
 				</div>
 			</div>
 		);
