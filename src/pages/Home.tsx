@@ -75,7 +75,7 @@ const Home: React.FC<Props> = ({
 					setisValid={setisValid}
 					setUserInfo={setUserInfo}
 				/>
-				<div className='loginWrapper md:w-[70vw] w-full lg:h-[80vh] md:h-[75vh] md:border-[2px] border-[#e8e8e8] md:mx-[15%]   rounded-lg flex flex-col items-start overflow-hidden z-50 md:bg-white px-[24px] pt-[4px] pb-[24px]'>
+				<div className='loginWrapper md:w-[70vw] w-full lg:h-[80vh] md:h-[75vh] md:border-[2px] border-[#e8e8e8] md:mx-[15%]   rounded-lg flex flex-col items-start overflow-x-hidden z-50 md:bg-white px-[24px] pt-[4px] pb-[24px]'>
 					<div className='greetUser flex items-center gap-[16px] justify-start w-full border-b-2 pb-[20px] md:pt-[20px] '>
 						<span className='w-[35px] h-[35px] bg-[#6D69FA] rounded flex justify-center items-center text-white'>
 							<FaRegSmileBeam size={20} />
@@ -93,7 +93,7 @@ const Home: React.FC<Props> = ({
 
 					<form
 						action='/'
-						className='flex w-full flex-wrap md:mt-[100px] mt-[32px] gap-10'
+						className='flex w-full flex-wrap md:mt-[50px] mt-[32px] gap-10'
 						onSubmit={(e) => e.preventDefault()}>
 						{/* gender */}
 						<div className='md:w-[48%] w-full flex flex-col'>
@@ -223,7 +223,7 @@ const Home: React.FC<Props> = ({
 							/>
 						</div>
 						<button
-							className='bg-[var(--primary)] md:w-[30%] w-full py-[12px] rounded text-white mt-[16px] flex items-center justify-center gap-2'
+							className='bg-[var(--primary)]  md:w-[45%] px-[16px] w-full py-[16px] rounded text-white md:mt-5 mt-[16px] flex items-center justify-center'
 							onClick={(e) => {
 								e.preventDefault();
 								setfirstshowing(!firstshowing); //set first to false
@@ -248,7 +248,7 @@ const Home: React.FC<Props> = ({
 					setisValid={setisValid}
 					setUserInfo={setUserInfo}
 				/>
-				<div className='loginWrapper md:w-[70vw] w-full lg:h-[80vh] md:h-[75vh] md:border-[2px] border-[#e8e8e8] md:mx-[15%]   rounded-lg flex flex-col items-start overflow-hidden z-50 md:bg-white px-[24px] pt-[4px] pb-[24px]'>
+				<div className='loginWrapper md:w-[70vw] w-full lg:h-[80vh] md:h-[75vh] md:border-[2px] border-[#e8e8e8] md:mx-[15%]   rounded-lg flex flex-col items-start overflow-x-hidden z-50 md:bg-white px-[24px] pt-[4px] pb-[24px]'>
 					<div className='greetUser flex items-center gap-[16px] justify-start w-full border-b-2 pb-[20px] md:pt-[20px] '>
 						<span className='w-[35px] h-[35px] bg-[#6D69FA] rounded flex justify-center items-center text-white'>
 							<FaBook size={20} />
@@ -266,7 +266,7 @@ const Home: React.FC<Props> = ({
 
 					<form
 						action='/'
-						className='flex w-full flex-wrap md:mt-[100px] mt-[32px] gap-10'
+						className='flex w-full flex-wrap md:mt-[50px] mt-[32px] gap-10'
 						onSubmit={(e) => {
 							e.preventDefault();
 						}}>
@@ -368,7 +368,7 @@ const Home: React.FC<Props> = ({
 						<div className='btns flex items-center flex-wrap  md:flex-row flex-col-reverse w-full md:gap-2'>
 							{/* end of inputs */}
 							<button
-								className='border-[var(--primary)] text-[var(--primary)] border-2  md:w-[20%] w-full py-[12px] rounded  mt-[16px] flex items-center justify-center gap-2'
+								className='border-[var(--primary)] text-[var(--primary)] border-2   md:w-auto px-[16px] w-full py-[12px] rounded  mt-[16px] flex items-center justify-center gap-2'
 								onClick={(e) => {
 									e.preventDefault();
 									setsecondshowing(!secondshowing); //setting second to false
@@ -377,7 +377,7 @@ const Home: React.FC<Props> = ({
 								Go Back To General Info
 							</button>
 							<button
-								className='bg-[var(--primary)] md:w-[20%] w-full py-[12px] rounded text-white mt-[16px] flex items-center justify-center gap-2'
+								className='bg-[var(--primary)]  md:w-auto px-[16px] w-full py-[12px] rounded text-white mt-[16px] flex items-center justify-center gap-2'
 								onClick={(e) => {
 									e.preventDefault();
 									setsecondshowing(!secondshowing); //set second false
@@ -399,7 +399,7 @@ const Home: React.FC<Props> = ({
 					setisValid={setisValid}
 					setUserInfo={setUserInfo}
 				/>
-				<div className='loginWrapper md:w-[70vw] w-full lg:h-[80vh] md:h-[75vh] md:border-[2px] border-[#e8e8e8] md:mx-[15%]   rounded-lg flex flex-col items-start overflow-hidden z-50 md:bg-white px-[24px] pt-[4px] pb-[24px]'>
+				<div className='loginWrapper md:w-[70vw] w-full lg:h-[80vh] md:h-[75vh] md:border-[2px] border-[#e8e8e8] md:mx-[15%]   rounded-lg flex flex-col items-start overflow-x-hidden z-50 md:bg-white px-[24px] pt-[4px] pb-[24px]'>
 					<div className='greetUser flex items-center gap-[16px] justify-start w-full border-b-2 pb-[20px] md:pt-[20px] '>
 						<span className='w-[35px] h-[35px] bg-[#6D69FA] rounded flex justify-center items-center text-white'>
 							<FaUserGraduate size={20} />
@@ -417,7 +417,7 @@ const Home: React.FC<Props> = ({
 
 					<form
 						action='/'
-						className='flex w-full flex-wrap md:mt-[100px] mt-[32px] gap-10'
+						className='flex w-full flex-wrap md:mt-[50px] mt-[32px] gap-10'
 						onSubmit={(e) => {
 							e.preventDefault();
 						}}>
@@ -518,7 +518,7 @@ const Home: React.FC<Props> = ({
 						<div className='btns flex items-center flex-wrap  md:flex-row flex-col-reverse w-full md:gap-2'>
 							{/* end of inputs */}
 							<button
-								className='border-[var(--primary)] text-[var(--primary)] border-2  md:w-[20%] w-full py-[12px] rounded  mt-[16px] flex items-center justify-center gap-2'
+								className='border-[var(--primary)] text-[var(--primary)] border-2  md:w-auto px-[16px] w-full py-[12px] rounded  mt-[16px] flex items-center justify-center gap-2'
 								onClick={(e) => {
 									e.preventDefault();
 									setthirdshowing(!thirdshowing); //set third to false
@@ -709,20 +709,28 @@ const Home: React.FC<Props> = ({
 											}}
 										/>
 										<span
-											className='text-red-400 flex items-center mt-2'
+											className={`text-red-400 flex items-center mt-2 cursor-pointer ${
+												userInformation.userRole[0].achievementList.length === 1
+													? 'disabled'
+													: ''
+											}`}
 											onClick={() => {
-												setuserInformation((prev: userDBType) => ({
-													...prev,
-													userRole: prev.userRole.map((role, index) => ({
-														...role,
-														achievementList:
-															index === 0
-																? role.achievementList.filter(
-																		(item, j) => j !== achievementIndex
-																  )
-																: role.achievementList,
-													})),
-												}));
+												if (
+													userInformation.userRole[0].achievementList.length > 1
+												) {
+													setuserInformation((prev: userDBType) => ({
+														...prev,
+														userRole: prev.userRole.map((role, index) => ({
+															...role,
+															achievementList:
+																index === 0
+																	? role.achievementList.filter(
+																			(item, j) => j !== achievementIndex
+																	  )
+																	: role.achievementList,
+														})),
+													}));
+												}
 											}}>
 											{' '}
 											<IoMdTrash size={20} /> Remove
@@ -761,15 +769,6 @@ const Home: React.FC<Props> = ({
 						{/* end of inputs */}
 						<div className='btns flex items-center flex-wrap  md:flex-row flex-col-reverse w-full md:gap-2'>
 							<button
-								className=' text-[var(--primary)]   md:w-auto w-full py-[12px] rounded font-medium mt-[16px] flex items-center justify-center gap-2'
-								onClick={(e) => {
-									e.preventDefault();
-									setfourthshowing(!fourthshowing); //set fourth to true
-									setthirdshowing(!thirdshowing); //set third to false
-								}}>
-								Go Back To Higher Institution
-							</button>
-							<button
 								className='border-[var(--primary)] text-[var(--primary)] border-2  md:w-[20%] w-full py-[12px] rounded  mt-[16px] flex items-center justify-center gap-2'
 								onClick={(e) => {
 									e.preventDefault();
@@ -788,6 +787,15 @@ const Home: React.FC<Props> = ({
 								Proceed To Experience
 							</button>
 						</div>
+						<button
+							className=' text-[var(--primary)]   md:w-auto w-full py-[12px] rounded font-medium  flex items-center justify-center gap-2'
+							onClick={(e) => {
+								e.preventDefault();
+								setfourthshowing(!fourthshowing); //set fourth to true
+								setthirdshowing(!thirdshowing); //set third to false
+							}}>
+							Go Back To Higher Institution
+						</button>
 					</form>
 				</div>
 			</div>
