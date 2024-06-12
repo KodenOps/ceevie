@@ -82,7 +82,7 @@ const Navbar: React.FC<Props> = ({
 				</div>
 			</div>
 			{navOpen ? null : (
-				<div className='absolute h-[100vh] w-[100vw] bg-[white] top-0 left-0'>
+				<div className=' h-[100vh] w-[100vw] bg-[white] top-0 left-0 fixed'>
 					<div className='logo w-full flex justify-between items-center py-[24px] border-b-2 px-[16px]'>
 						<Image
 							className='w-[10%]'
