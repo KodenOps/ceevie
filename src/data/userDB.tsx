@@ -39,7 +39,7 @@ export interface userDBType {
 	userRole: roletype[];
 	skills: string[];
 	Certification: CertificationType[];
-	linkenIn: string;
+	linkedIn: string;
 	portfolio: string;
 }
 export const userDB: userDBType = {
@@ -77,6 +77,6 @@ export const userDB: userDBType = {
 	],
 	skills: [],
 	Certification: [{ name: '', year: '' }],
-	linkenIn: '',
+	linkedIn: '',
 	portfolio: '',
 };

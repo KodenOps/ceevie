@@ -771,7 +771,7 @@ const Home: React.FC<Props> = ({
 											role.achievementList.slice(-1)[0] === '' ? 'disabled' : ''
 										}`}
 										onClick={(e) => {
-											e.preventDefault()
+											e.preventDefault();
 											const lastAchievement = role.achievementList.slice(-1)[0];
 											if (lastAchievement !== '') {
 												setuserInformation((prev: userDBType) => ({
@@ -846,7 +846,7 @@ const Home: React.FC<Props> = ({
 								setfourthshowing(!fourthshowing); //set fourth to false
 								setfifthshowing(!fifthshowing); //set fifth to true
 							}}>
-							Proceed To Experience
+							Next
 						</button>
 					</div>
 					<button
@@ -895,11 +895,44 @@ const Home: React.FC<Props> = ({
 							e.preventDefault();
 						}}>
 						<div className='md:w-[48%] w-full flex flex-col'>
+							<label htmlFor='LinkedInURL'>LinkedIn URL</label>
+							<input
+								className='formCss'
+								type='url'
+								name='LinkedInURL'
+								value={userInformation.linkedIn}
+								placeholder='Your LinkedIn URL'
+								onChange={(e) => {
+									setuserInformation({
+										...userInformation,
+										linkedIn: e.target.value,
+									});
+								}}
+							/>
+						</div>
+						<div className='md:w-[48%] w-full flex flex-col'>
+							<label htmlFor='portfolioURL'>Portfolio URL</label>
+							<input
+								className='formCss'
+								type='url'
+								name='portfolioURL'
+								value={userInformation.portfolio}
+								placeholder='Your Portfolio URL'
+								onChange={(e) => {
+									setuserInformation({
+										...userInformation,
+										portfolio: e.target.value,
+									});
+								}}
+							/>
+						</div>
+						<div className='md:w-[48%] w-full flex flex-col  border-b-2  border-red-400 border-dotted pb-[32px]'>
 							<label htmlFor='certStatus'>
-								Any Certification(s)?<span className='text-red-500'>*</span>
+								Any Certification(s)?
+								<span className='text-red-500'>*</span>
 							</label>
 							<select
-								className=' formCss'
+								className=' formCss '
 								name='certStatus'
 								id='startYear'
 								value={userInformation.certAvailable}
@@ -916,21 +949,32 @@ const Home: React.FC<Props> = ({
 						</div>
 						{userInformation.certAvailable === 'Yes' ? (
 							<div className='w-full '>
-								{userInformation.Certification.map((cert, index) => {
-									let CertTitle = 'Certification' + index;
+								{userInformation.Certification.map((cert, Certindex) => {
+									let CertTitle = 'Certification' + Certindex;
 									return (
-										<div className='flex w-full flex-wrap md:mt-[20px] mt-[32px] gap-10 border-y-2 py-[24px] border-red-400 border-dotted mb-[16px]'>
+										<div className='flex w-full flex-wrap md:mt-[20px] mt-[0px] gap-10 border-b-2 pb-[32px] border-red-400 border-dotted mb-[16px]'>
 											<p className='md:text-xl text-sm text-center w-full text-[var(--primary)]'>
-												----------- Certificate {index + 1} -----------
+												----------- Certificate {Certindex + 1} -----------
 											</p>
 											<div className='md:w-[48%] w-full flex flex-col'>
 												<label htmlFor='phoneNum'> Certification Name</label>
 												<input
 													className=' formCss'
 													type='text'
-													name={CertTitle}
+													name={CertTitle + ' ' + ' ' + Certindex}
 													placeholder='Higher Institution Name'
-													value={userInformation.Certification[index].name}
+													value={cert.name}
+													onChange={(e) => {
+														setuserInformation((prev: userDBType) => ({
+															...prev,
+															// Certification:[...cert, ]
+															Certification: prev.Certification.map((r, i) =>
+																i === Certindex
+																	? { ...r, name: e.target.value }
+																	: r
+															),
+														}));
+													}}
 												/>
 											</div>
 
@@ -940,14 +984,16 @@ const Home: React.FC<Props> = ({
 													className=' formCss'
 													name='endYear'
 													id='endYear'
-													value={userInformation.higherInstitution.hendDate}
+													value={cert.year}
 													onChange={(e) => {
 														setuserInformation((prev: userDBType) => ({
 															...prev,
-															higherInstitution: {
-																...prev.higherInstitution,
-																hendDate: e.target.value,
-															},
+															// Certification:[...cert, ]
+															Certification: prev.Certification.map((r, i) =>
+																i === Certindex
+																	? { ...r, year: e.target.value }
+																	: r
+															),
 														}));
 													}}>
 													<option value='Select option'>
@@ -967,31 +1013,31 @@ const Home: React.FC<Props> = ({
 										</div>
 									);
 								})}
-								<div className='btns flex items-center flex-wrap  md:flex-row flex-col-reverse w-full md:gap-2'>
-									{/* end of inputs */}
-									<button
-										className='border-[var(--primary)] text-[var(--primary)] border-2  md:w-auto px-[16px] w-full py-[12px] rounded  mt-[16px] flex items-center justify-center gap-2'
-										onClick={(e) => {
-											e.preventDefault();
-											setthirdshowing(!thirdshowing); //set third to false
-											setsecondshowing(!secondshowing); //set second to true
-										}}>
-										Go Back To Secondary School
-									</button>
-									<button
-										className='bg-[var(--primary)] md:w-[20%] w-full py-[12px] rounded text-white mt-[16px] flex items-center justify-center gap-2'
-										onClick={(e) => {
-											e.preventDefault();
-											setthirdshowing(!thirdshowing); //set third to false
-											setfourthshowing(!fourthshowing); //set fourth to true
-										}}>
-										Proceed To Experience
-									</button>
-								</div>
 							</div>
 						) : (
 							''
 						)}
+						<div className='btns flex items-center flex-wrap  md:flex-row flex-col-reverse w-full md:gap-2'>
+							{/* end of inputs */}
+							<button
+								className='border-[var(--primary)] text-[var(--primary)] border-2  md:w-auto px-[16px] w-full py-[12px] rounded  mt-[16px] flex items-center justify-center gap-2'
+								onClick={(e) => {
+									e.preventDefault();
+									setthirdshowing(!thirdshowing); //set third to false
+									setsecondshowing(!secondshowing); //set second to true
+								}}>
+								Go Back To Secondary School
+							</button>
+							<button
+								className='bg-[var(--primary)] md:w-[20%] w-full py-[12px] rounded text-white mt-[16px] flex items-center justify-center gap-2'
+								onClick={(e) => {
+									e.preventDefault();
+									setthirdshowing(!thirdshowing); //set third to false
+									setfourthshowing(!fourthshowing); //set fourth to true
+								}}>
+								Proceed To Experience
+							</button>
+						</div>
 					</form>
 				</div>
 			</div>
