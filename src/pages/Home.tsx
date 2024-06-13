@@ -770,7 +770,8 @@ const Home: React.FC<Props> = ({
 										className={`addMore flex items-center justify-start gap-4 ${
 											role.achievementList.slice(-1)[0] === '' ? 'disabled' : ''
 										}`}
-										onClick={() => {
+										onClick={(e) => {
+											e.preventDefault()
 											const lastAchievement = role.achievementList.slice(-1)[0];
 											if (lastAchievement !== '') {
 												setuserInformation((prev: userDBType) => ({
