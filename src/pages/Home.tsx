@@ -977,7 +977,6 @@ const Home: React.FC<Props> = ({
 													}}
 												/>
 											</div>
-
 											<div className='md:w-[48%] w-full flex flex-col'>
 												<label htmlFor='endYear'>End Year</label>
 												<select
@@ -1024,55 +1023,70 @@ const Home: React.FC<Props> = ({
 													<IoMdTrash size={20} /> Remove
 												</span>
 											</div>
+											<div className='btns flex items-center flex-wrap  md:flex-row flex-col w-full md:gap-2'>
+												{/* add more certificate */}
+												<div
+													className={`addMore flex items-center justify-center gap-4 mb-[16px] ${1}`}>
+													<span className='w-[35px] h-[35px] flex justify-center items-center border-2 bg-[#BBDAFF] rounded-full '>
+														<CiCirclePlus size={25} />
+													</span>
+													<button
+														className={`text-[var(--primary)] font-medium 	${
+															userInformation.Certification.slice(-1)[0]
+																.name === ''
+																? 'disabled'
+																: ''
+														}`}
+														onClick={(e) => {
+															e.preventDefault();
+															let newuser = {
+																name: '',
+																year: '',
+															};
+
+															const lastCert =
+																userInformation.Certification.slice(-1)[0];
+															if (lastCert && lastCert.name !== '') {
+																setuserInformation((prev: userDBType) => ({
+																	...prev,
+																	Certification: [
+																		...prev.Certification,
+																		newuser,
+																	],
+																}));
+															}
+														}}>
+														Add More Certificates
+													</button>
+												</div>
+											</div>
 										</div>
 									);
 								})}
-								<div className='btns flex items-center flex-wrap  md:flex-row flex-col w-full md:gap-2'>
-									{/* add more certificate */}
-									<div
-										className={`addMore flex items-center justify-center gap-4 mb-[16px] ${1}
-								`}
-										onClick={(e) => {
-											e.preventDefault();
-											let newuser = {
-												name: '',
-												year: '',
-											};
-											setuserInformation((prev: userDBType) => ({
-												...prev,
-												Certification: [...prev.Certification, newuser],
-											}));
-										}}>
-										<span className='w-[35px] h-[35px] flex justify-center items-center border-2 bg-[#BBDAFF] rounded-full '>
-											<CiCirclePlus size={25} />
-										</span>
-										<button className='text-[var(--primary)] font-medium'>
-											Add More Certificates
-										</button>
-									</div>
-									<button
-										className='border-[var(--primary)] text-[var(--primary)] border-2  md:w-auto px-[16px] w-full py-[12px] rounded  mt-[16px] flex items-center justify-center gap-2'
-										onClick={(e) => {
-											e.preventDefault();
-											setthirdshowing(!thirdshowing); //set third to false
-											setsecondshowing(!secondshowing); //set second to true
-										}}>
-										Go Back To Secondary School
-									</button>
-									<button
-										className='bg-[var(--primary)] md:w-[20%] w-full py-[12px] rounded text-white mt-[16px] flex items-center justify-center gap-2'
-										onClick={(e) => {
-											e.preventDefault();
-											setthirdshowing(!thirdshowing); //set third to false
-											setfourthshowing(!fourthshowing); //set fourth to true
-										}}>
-										Proceed To Experience
-									</button>
-								</div>
 							</div>
 						) : (
 							''
 						)}
+						<div className='w-full flex items-center justify-start gap-4'>
+							<button
+								className='border-[var(--primary)] text-[var(--primary)] border-2  md:w-auto px-[16px] w-full py-[12px] rounded  mt-[16px] flex items-center justify-center gap-2'
+								onClick={(e) => {
+									e.preventDefault();
+									setthirdshowing(!thirdshowing); //set third to false
+									setsecondshowing(!secondshowing); //set second to true
+								}}>
+								Go Back To Secondary School
+							</button>
+							<button
+								className='bg-[var(--primary)] md:w-[20%] w-full py-[12px] rounded text-white mt-[16px] flex items-center justify-center gap-2'
+								onClick={(e) => {
+									e.preventDefault();
+									setthirdshowing(!thirdshowing); //set third to false
+									setfourthshowing(!fourthshowing); //set fourth to true
+								}}>
+								Proceed To Experience
+							</button>
+						</div>
 					</form>
 				</div>
 			</div>
